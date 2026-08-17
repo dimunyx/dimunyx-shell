@@ -15,7 +15,7 @@ OSDWindow {
     iconText: charging ? "󰂄" : "󱐋"
     labelText: charging ? Translation.trf("osd.battery.charging", percent) : (pluggedIn ? Translation.tr("osd.battery.fully.charged") : percent + "%")
     value: percent / 100
-    accentColor: percent <= 10 ? "#ff0000" : (percent <= 20 ? "#ff6b6b" : "#B58FFF")
+    accentColor: percent <= 10 ? "#ff0000" : (percent <= 20 ? "#f38ba8" : "#89b4fa")
     showProgress: true
     Timer {
         interval: 1000

@@ -1,4 +1,5 @@
 import QtQuick
+import "../Components" as MD3
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Mpris
@@ -111,7 +112,7 @@ Item {
                                 var val = root.values[i] || 0
                                 var barHeight = Math.max(2, (val / 100) * h)
                                 var x = i * (bw + bs)
-                                ctx.fillStyle = "#B58FFF"
+                                ctx.fillStyle = "#89b4fa"
                                 ctx.fillRect(x, h - barHeight, bw, barHeight)
                         }
                 }
@@ -383,7 +384,7 @@ Item {
                         refreshTimer.restart()
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
@@ -418,12 +419,12 @@ Item {
                 implicitHeight: 400
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -440,7 +441,7 @@ Item {
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -467,7 +468,7 @@ Item {
                                                         spacing: 8
                                                         Text {
                                                                  text: Translation.tr("cava.popup.title")
-                                                                color: "#E8DBFF"
+                                                                color: "#cdd6f4"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 14
@@ -483,7 +484,7 @@ Item {
                                                                         height: 24
                                                                         radius: 6
                                                                 color: "transparent"
-                                                                border { color: "#4c3a70"; width: 1 }
+                                                                border { color: "#45475a"; width: 1 }
                                                                 clip: true
                                                                 Rectangle {
                                                                         id: closeHoverFill
@@ -491,7 +492,7 @@ Item {
                                                                         width: 0
                                                                         height: 0
                                                                         radius: 6
-                                                                        color: "#B58FFF"
+                                                                        color: "#89b4fa"
                                                                         opacity: 0.2
                                                                         Behavior on width {
                                                                                 NumberAnimation {
@@ -509,13 +510,13 @@ Item {
                                                                 Text {
                                                                         anchors.centerIn: parent
                                                                         text: "\uf00d"
-                                                                        color: "#B58FFF"
+                                                                        color: "#89b4fa"
                                                                         font {
                                                                                 family: "Monocraft"
                                                                                 pixelSize: 14
                                                                         }
                                                                 }
-                                                                MouseArea {
+                                                                MD3.Pressable {
                                                                         id: closeArea
                                                                         anchors.fill: parent
                                                                         hoverEnabled: true
@@ -553,7 +554,7 @@ Item {
                                                                 height: parent.height + 8
                                                                 radius: 14
                                                                 color: "transparent"
-                                                                border { color: "#B58FFF"; width: 2 }
+                                                                border { color: "#89b4fa"; width: 2 }
                                                                 opacity: root.player && root.player.hasPlayer && root.player.isPlaying || root.isPlaying ? root.glowPulse : 0
                                                                 scale: root.player && root.player.hasPlayer && root.player.isPlaying || root.isPlaying ? 1.04 : 1
                                                                 Behavior on opacity {
@@ -568,7 +569,7 @@ Item {
                                                                 width: parent.width
                                                                 height: parent.height
                                                                 radius: 10
-                                                                color: "#110d1a"
+                                                                color: "#181825"
                                                                 Image {
                                                                         id: artImg
                                                                         anchors.fill: parent
@@ -596,7 +597,7 @@ Item {
                                                                 Text {
                                                                         anchors.centerIn: parent
                                                                         text: root.isYouTube ? "\udb80\udf8a" : "\uf03d"
-                                                                        color: "#4c3a70"
+                                                                        color: "#45475a"
                                                                         font {
                                                                                 family: "Monocraft"
                                                                                 pixelSize: 44
@@ -609,7 +610,7 @@ Item {
                                                         anchors.horizontalCenter: parent.horizontalCenter
                                                         width: parent.width - 16
                                                         text: getTrackTitle()
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 13
@@ -624,7 +625,7 @@ Item {
                                         Text {
                                                 width: parent.width
                                                  text: getTrackTitle() !== "" ? "" : Translation.tr("cava.no.player")
-                                                color: "#4c3a70"
+                                                color: "#45475a"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 12
@@ -641,7 +642,7 @@ Item {
                                                         spacing: 6
                                                         Text {
                                                                 text: formatTime(getPosition())
-                                                                color: "#6b5a8f"
+                                                                color: "#585b70"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 10
@@ -652,12 +653,12 @@ Item {
                                                                 Layout.fillWidth: true
                                                                 height: 4
                                                                 radius: 2
-                                                                color: "#110d1a"
+                                                                color: "#181825"
                                                                 Rectangle {
                                                                         width: parent.width * (getLength() > 0 ? Math.min(1, getPosition() / getLength()) : 0)
                                                                         height: parent.height
                                                                         radius: 2
-                                                                        color: "#B58FFF"
+                                                                        color: "#89b4fa"
                                                                         Behavior on width {
                                                                                 PropertyAnimation {
                                                                                         duration: 500
@@ -667,7 +668,7 @@ Item {
                                                         }
                                                         Text {
                                                                 text: formatTime(getLength())
-                                                                color: "#6b5a8f"
+                                                                color: "#585b70"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 10
@@ -687,7 +688,7 @@ Item {
                                                         height: 40
                                                         radius: 20
                                                         color: "transparent"
-                                                        border { color: "#4c3a70"; width: 1 }
+                                                        border { color: "#45475a"; width: 1 }
                                                         clip: true
                                                         Rectangle {
                                                                 id: prevHoverFill
@@ -695,7 +696,7 @@ Item {
                                                                 width: 0
                                                                 height: 0
                                                                 radius: 20
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 opacity: 0.2
                                                                 Behavior on width {
                                                                         NumberAnimation {
@@ -713,13 +714,13 @@ Item {
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: "\uf04a"
-                                                                color: getPlayerName() !== "" ? "#B58FFF" : "#4c3a70"
+                                                                color: getPlayerName() !== "" ? "#89b4fa" : "#45475a"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 20
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: prevArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -742,7 +743,7 @@ Item {
                                                         radius: 20
                                                         color: "transparent"
                                                         border {
-                                                                color: getIsPlaying() ? "#B58FFF" : "#4c3a70"
+                                                                color: getIsPlaying() ? "#89b4fa" : "#45475a"
                                                                 width: getIsPlaying() ? 2 : 1
                                                         }
                                                         clip: true
@@ -752,7 +753,7 @@ Item {
                                                                 width: 0
                                                                 height: 0
                                                                 radius: 20
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 opacity: 0.2
                                                                 Behavior on width {
                                                                         NumberAnimation {
@@ -770,13 +771,13 @@ Item {
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: getIsPlaying() ? "\uf04b" : "\uf04c"
-                                                                color: getIsPlaying() ? "#B58FFF" : "#4c3a70"
+                                                                color: getIsPlaying() ? "#89b4fa" : "#45475a"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 22
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: playArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -798,7 +799,7 @@ Item {
                                                         height: 40
                                                         radius: 20
                                                         color: "transparent"
-                                                        border { color: "#4c3a70"; width: 1 }
+                                                        border { color: "#45475a"; width: 1 }
                                                         clip: true
                                                         Rectangle {
                                                                 id: nextHoverFill
@@ -806,7 +807,7 @@ Item {
                                                                 width: 0
                                                                 height: 0
                                                                 radius: 20
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 opacity: 0.2
                                                                 Behavior on width {
                                                                         NumberAnimation {
@@ -824,13 +825,13 @@ Item {
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: "\uf04e"
-                                                                color: getPlayerName() !== "" ? "#B58FFF" : "#4c3a70"
+                                                                color: getPlayerName() !== "" ? "#89b4fa" : "#45475a"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 20
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: nextArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -856,7 +857,7 @@ Item {
                                                         }
                                                         return name
                                                 }
-                                                color: "#4c3a70"
+                                                color: "#45475a"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 10
@@ -871,14 +872,14 @@ Item {
                                                 bottom: parent.bottom
                                         }
                                         width: 4
-                                        color: "#3a3255"
+                                        color: "#45475a"
                                         radius: 2
                                         visible: popupColumn.height > parent.height
                                         Rectangle {
                                                 width: 4
                                                 height: Math.max(20, parent.height * (parent.height / popupColumn.height))
                                                 radius: 2
-                                                color: "#B58FFF"
+                                                color: "#89b4fa"
                                                 y: Math.max(0, (parent.parent ? (parent.parent.contentY || 0) / (popupColumn.height - parent.parent.height) : 0) * (parent.height - height))
                                         }
                                 }

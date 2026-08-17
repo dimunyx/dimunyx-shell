@@ -1,4 +1,5 @@
 import QtQuick
+import "../Components" as MD3
 import Quickshell
 import Quickshell.Io
 import QtQuick.Layouts
@@ -7,7 +8,7 @@ import "../Services"
 Item {
         id: root
         implicitWidth: diskRow.implicitWidth
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -23,7 +24,7 @@ Item {
         property bool pctVisible: false
         Timer {
                 id: animTimer
-                interval: 16
+                interval: 12
                 repeat: true
                 running: true
                 onTriggered: {
@@ -95,7 +96,7 @@ Item {
                 Text {
                         id: diskIcon
                         text: ""
-                        color: "#B58FFF"
+                        color: "#89b4fa"
                         scale: 1
                         font {
                                 family: "Monocraft"
@@ -131,7 +132,7 @@ Item {
                                 id: diskPct
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: Math.round(root.diskUsage) + "%"
-                                color: "#E8DBFF"
+                                color: "#cdd6f4"
                                 opacity: root.pctVisible ? 1 : 0
                                 font {
                                         family: "Monocraft"
@@ -146,7 +147,7 @@ Item {
                         }
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
@@ -183,12 +184,12 @@ Item {
                 implicitHeight: 140
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -205,7 +206,7 @@ Item {
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -235,7 +236,7 @@ Item {
                                                         verticalCenter: parent.verticalCenter
                                                 }
                                                  text: " " + Translation.tr("monitor.disk.popup.title")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 14
@@ -249,7 +250,7 @@ Item {
                                                         verticalCenter: parent.verticalCenter
                                                 }
                                                 text: Math.round(root.diskUsage) + "% (" + root.diskUsedGiB.toFixed(1) + "GB)"
-                                                color: "#B58FFF"
+                                                color: "#89b4fa"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 11
@@ -265,7 +266,7 @@ Item {
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: closeHoverFill
@@ -273,7 +274,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width {
                                                                 NumberAnimation {
@@ -291,13 +292,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -337,7 +338,7 @@ Item {
                                                         ctx.clearRect(0, 0, w, h)
                                                         ctx.save()
                                                         ctx.font = "11px Monocraft"
-                                                        ctx.fillStyle = "#E8DBFF"
+                                                        ctx.fillStyle = "#cdd6f4"
                                                         var labels = ["100%", "75%", "50%", "25%", "0%"]
                                                         var lw = 32
                                                         for (var k = 0; k < 5; k++) {
@@ -364,7 +365,7 @@ Item {
                                                         for (var i = 1; i < data.length; i++) {
                                                                 ctx.lineTo(lw + i * pw, py(data[i]))
                                                         }
-                                                        ctx.strokeStyle = "#B58FFF"
+                                                        ctx.strokeStyle = "#89b4fa"
                                                         ctx.lineWidth = 3
                                                         ctx.stroke()
                                                         ctx.beginPath()

@@ -4,6 +4,7 @@ import QtQuick.Controls
 import "./Services"
 import "./Indicators"
 import "./Monitors"
+import "./Components" as MD3
 PanelWindow {
         id: root
         focusable: true
@@ -17,7 +18,7 @@ PanelWindow {
                 right: 12
                 top: 12
         }
-        implicitHeight: 36
+        implicitHeight: MD3.Theme.barHeight
         property var lockScreen: null
         color: "transparent"
         property real barOpacity: 0
@@ -47,12 +48,12 @@ PanelWindow {
         Rectangle {
                 id: barRect
                 anchors.fill: parent
-                color: "#000000"
+                color: MD3.Theme.surfaceContainer
                 border {
-                        color: "#B58FFF"
-                        width: 4
+                        color: MD3.Theme.outlineVariant
+                        width: 1
                 }
-                radius: 20
+                radius: MD3.Theme.barRadius
                 opacity: root.rectOpacity
                 transform: Translate {
                         y: root.rectTransformY

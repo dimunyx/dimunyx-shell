@@ -1,4 +1,5 @@
 import QtQuick 6.0
+import "../Components" as MD3
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
@@ -63,7 +64,7 @@ PanelWindow {
                 }
                 displayText = stars
         }
-        MouseArea {
+        MD3.Pressable {
                 anchors.fill: parent
                 hoverEnabled: false
                 cursorShape: Qt.ArrowCursor
@@ -76,7 +77,7 @@ PanelWindow {
         }
         Rectangle {
                 anchors.fill: parent
-                color: "#000000"
+                color: "#1e1e2e"
                 opacity: 0.3
         }
         Column {
@@ -91,7 +92,7 @@ PanelWindow {
                         anchors.horizontalCenter: parent.horizontalCenter
                         font.pixelSize: 96
                         font.weight: Font.Light
-                        color: "white"
+                        color: "#cdd6f4"
                         font.family: "Monocraft"
                         text: {
                                 var now = new Date()
@@ -104,7 +105,7 @@ PanelWindow {
                         id: dateText
                         anchors.horizontalCenter: parent.horizontalCenter
                         font.pixelSize: 24
-                        color: "#aaaaaa"
+                        color: "#a6adc8"
                         font.family: "Monocraft"
                         text: {
                                 var now = new Date()
@@ -121,20 +122,20 @@ PanelWindow {
                                 family: "Nerd Fonts"
                                 pixelSize: 48
                         }
-                        color: isLocked ? "#ff6b6b" : "#B58FFF"
+                        color: isLocked ? "#f38ba8" : "#89b4fa"
                 }
                 Rectangle {
                         id: inputContainer
                         anchors.horizontalCenter: parent.horizontalCenter
                         width: 226
                         height: 70
-                        color: "#1a1a2a"
+                        color: "#313244"
                         radius: 16
                         border {
-                                 color: isLocked ? "#ff6b6b" : (errorType === "incorrect" ? "#ff6b6b" : "#4c3a70")
+                                 color: isLocked ? "#f38ba8" : (errorType === "incorrect" ? "#f38ba8" : "#45475a")
                                 width: 2
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 onClicked: {
                                         if (!isLocked) {
@@ -147,7 +148,7 @@ PanelWindow {
                                 anchors.fill: parent
                                 anchors.leftMargin: 15
                                 verticalAlignment: Text.AlignVCenter
-                                color: isLocked ? "#ff6b6b" : "white"
+                                color: isLocked ? "#f38ba8" : "white"
                                 font {
                                         family: "Monocraft"
                                         pixelSize: 22
@@ -168,7 +169,7 @@ PanelWindow {
                         anchors.top: inputContainer.bottom
                         anchors.topMargin: 8
                         text: errorMessage
-                         color: isLocked ? "#ff6b6b" : (errorType === "unlocked" ? "#4CAF50" : "#ff6b6b")
+                         color: isLocked ? "#f38ba8" : (errorType === "unlocked" ? "#a6e3a1" : "#f38ba8")
                         font {
                                 family: "Monocraft"
                                 pixelSize: 14
@@ -194,12 +195,12 @@ PanelWindow {
                                                 width: 70
                                                 height: 70
                                                 radius: 16
-                                                color: "#2a2a4a"
+                                                color: "#313244"
                                                 property bool hovered: false
                                                 property bool pressed: false
                                                 opacity: isLocked ? 0.3 : 1
                                                 border {
-                                                        color: hovered ? "#B58FFF" : "#4c3a70"
+                                                        color: hovered ? "#89b4fa" : "#45475a"
                                                         width: hovered ? 2 : 1
                                                 }
                                                 scale: pressed ? 0.92 : 1
@@ -212,13 +213,13 @@ PanelWindow {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: modelData
-                                                        color: parent.hovered ? "#B58FFF" : "#E8DBFF"
+                                                        color: parent.hovered ? "#89b4fa" : "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 26
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         anchors.fill: parent
                                                         hoverEnabled: true
                                                         cursorShape: isLocked ? Qt.ArrowCursor : Qt.PointingHandCursor
@@ -234,7 +235,7 @@ PanelWindow {
                                                                 if (errorMessage !== "") {
                                                                         errorMessage = ""
                                                                         errorType = ""
-                                                                        inputContainer.border.color = "#4c3a70"
+                                                                        inputContainer.border.color = "#45475a"
                                                                 }
                                                         }
                                                 }
@@ -249,12 +250,12 @@ PanelWindow {
                                                 width: 70
                                                 height: 70
                                                 radius: 16
-                                                color: "#2a2a4a"
+                                                color: "#313244"
                                                 property bool hovered: false
                                                 property bool pressed: false
                                                 opacity: isLocked ? 0.3 : 1
                                                 border {
-                                                        color: hovered ? "#B58FFF" : "#4c3a70"
+                                                        color: hovered ? "#89b4fa" : "#45475a"
                                                         width: hovered ? 2 : 1
                                                 }
                                                 scale: pressed ? 0.92 : 1
@@ -267,13 +268,13 @@ PanelWindow {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: modelData
-                                                        color: parent.hovered ? "#B58FFF" : "#E8DBFF"
+                                                        color: parent.hovered ? "#89b4fa" : "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 26
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         anchors.fill: parent
                                                         hoverEnabled: true
                                                         cursorShape: isLocked ? Qt.ArrowCursor : Qt.PointingHandCursor
@@ -289,7 +290,7 @@ PanelWindow {
                                                                 if (errorMessage !== "") {
                                                                         errorMessage = ""
                                                                         errorType = ""
-                                                                        inputContainer.border.color = "#4c3a70"
+                                                                        inputContainer.border.color = "#45475a"
                                                                 }
                                                         }
                                                 }
@@ -304,12 +305,12 @@ PanelWindow {
                                                 width: 70
                                                 height: 70
                                                 radius: 16
-                                                color: "#2a2a4a"
+                                                color: "#313244"
                                                 property bool hovered: false
                                                 property bool pressed: false
                                                 opacity: isLocked ? 0.3 : 1
                                                 border {
-                                                        color: hovered ? "#B58FFF" : "#4c3a70"
+                                                        color: hovered ? "#89b4fa" : "#45475a"
                                                         width: hovered ? 2 : 1
                                                 }
                                                 scale: pressed ? 0.92 : 1
@@ -322,13 +323,13 @@ PanelWindow {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: modelData
-                                                        color: parent.hovered ? "#B58FFF" : "#E8DBFF"
+                                                        color: parent.hovered ? "#89b4fa" : "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 26
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         anchors.fill: parent
                                                         hoverEnabled: true
                                                         cursorShape: isLocked ? Qt.ArrowCursor : Qt.PointingHandCursor
@@ -344,7 +345,7 @@ PanelWindow {
                                                                 if (errorMessage !== "") {
                                                                         errorMessage = ""
                                                                         errorType = ""
-                                                                        inputContainer.border.color = "#4c3a70"
+                                                                        inputContainer.border.color = "#45475a"
                                                                 }
                                                         }
                                                 }
@@ -357,12 +358,12 @@ PanelWindow {
                                         width: 70
                                         height: 70
                                         radius: 16
-                                        color: "#2a2a4a"
+                                        color: "#313244"
                                         property bool hovered: false
                                         property bool pressed: false
                                         opacity: isLocked ? 0.3 : 1
                                         border {
-                                                color: hovered ? "#ff6b6b" : "#4c3a70"
+                                                color: hovered ? "#f38ba8" : "#45475a"
                                                 width: hovered ? 2 : 1
                                         }
                                         scale: pressed ? 0.92 : 1
@@ -375,13 +376,13 @@ PanelWindow {
                                         Text {
                                                 anchors.centerIn: parent
                                                 text: "⌫"
-                                                color: parent.hovered ? "#ff6b6b" : "#E8DBFF"
+                                                color: parent.hovered ? "#f38ba8" : "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 24
                                                 }
                                         }
-                                        MouseArea {
+                                        MD3.Pressable {
                                                 anchors.fill: parent
                                                 hoverEnabled: true
                                                 cursorShape: isLocked ? Qt.ArrowCursor : Qt.PointingHandCursor
@@ -403,12 +404,12 @@ PanelWindow {
                                         width: 70
                                         height: 70
                                         radius: 16
-                                        color: "#2a2a4a"
+                                        color: "#313244"
                                         property bool hovered: false
                                         property bool pressed: false
                                         opacity: isLocked ? 0.3 : 1
                                         border {
-                                                color: hovered ? "#B58FFF" : "#4c3a70"
+                                                color: hovered ? "#89b4fa" : "#45475a"
                                                 width: hovered ? 2 : 1
                                         }
                                         scale: pressed ? 0.92 : 1
@@ -421,13 +422,13 @@ PanelWindow {
                                         Text {
                                                 anchors.centerIn: parent
                                                 text: "0"
-                                                color: parent.hovered ? "#B58FFF" : "#E8DBFF"
+                                                color: parent.hovered ? "#89b4fa" : "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 26
                                                 }
                                         }
-                                        MouseArea {
+                                        MD3.Pressable {
                                                 anchors.fill: parent
                                                 hoverEnabled: true
                                                 cursorShape: isLocked ? Qt.ArrowCursor : Qt.PointingHandCursor
@@ -442,7 +443,7 @@ PanelWindow {
                                                         updateDisplay()
                                                         if (errorMessage !== "") {
                                                                 errorMessage = ""
-                                                                inputContainer.border.color = "#4c3a70"
+                                                                inputContainer.border.color = "#45475a"
                                                         }
                                                 }
                                         }
@@ -451,12 +452,12 @@ PanelWindow {
                                         width: 70
                                         height: 70
                                         radius: 16
-                                        color: "#2a2a4a"
+                                        color: "#313244"
                                         property bool hovered: false
                                         property bool pressed: false
                                         opacity: isLocked ? 0.3 : 1
                                         border {
-                                                color: hovered ? "#4CAF50" : "#4c3a70"
+                                                color: hovered ? "#a6e3a1" : "#45475a"
                                                 width: hovered ? 2 : 1
                                         }
                                         scale: pressed ? 0.92 : 1
@@ -469,13 +470,13 @@ PanelWindow {
                                         Text {
                                                 anchors.centerIn: parent
                                                 text: "✓"
-                                                color: parent.hovered ? "#4CAF50" : "#E8DBFF"
+                                                color: parent.hovered ? "#a6e3a1" : "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 26
                                                 }
                                         }
-                                        MouseArea {
+                                        MD3.Pressable {
                                                 anchors.fill: parent
                                                 hoverEnabled: true
                                                 cursorShape: isLocked ? Qt.ArrowCursor : Qt.PointingHandCursor
@@ -518,7 +519,7 @@ PanelWindow {
                         var remaining = maxAttempts - attempts
                         errorMessage = Translation.trf("lockscreen.attemptsRemaining", remaining)
                         errorType = "incorrect"
-                        inputContainer.border.color = "#ff6b6b"
+                        inputContainer.border.color = "#f38ba8"
                         passwordInput.text = ""
                         updateDisplay()
                         passwordInput.forceActiveFocus()
@@ -548,7 +549,7 @@ PanelWindow {
                                 passwordInput.enabled = true
                                 passwordInput.text = ""
                                 updateDisplay()
-                                inputContainer.border.color = "#4c3a70"
+                                inputContainer.border.color = "#45475a"
                                 passwordInput.forceActiveFocus()
                                  console.log("🔓 Lock removed!")
                         }
@@ -567,7 +568,7 @@ PanelWindow {
                         attempts = 0
                         isLocked = false
                         passwordInput.enabled = true
-                        inputContainer.border.color = "#4c3a70"
+                        inputContainer.border.color = "#45475a"
                         if (lockTimer.running) lockTimer.stop()
                 }
         }

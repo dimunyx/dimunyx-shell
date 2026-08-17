@@ -13,7 +13,7 @@ OSDWindow {
     iconText: muted ? "\ueee8" : (volumePct < 33 ? "\uf026" : (volumePct < 66 ? "\uf027" : "\uf028"))
     labelText: muted ? Translation.tr("osd.volume.muted") : volumePct + "%"
     value: volumePct / 100
-    accentColor: muted ? "#ff6b6b" : "#B58FFF"
+    accentColor: muted ? "#f38ba8" : "#89b4fa"
     showProgress: true
     PwObjectTracker {
         objects: [Pipewire.defaultAudioSink]

@@ -1,13 +1,14 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import "../Components" as MD3
 import Quickshell.Widgets
 import "../Services"
 import "../Services/WM"
 Item {
         id: root
         implicitWidth: 60
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -26,7 +27,7 @@ Item {
         Text {
                 id: icon
                 text: "󰌌"
-                color: "#B58FFF"
+                color: "#89b4fa"
                 scale: 1
                 anchors {
                         left: parent.left
@@ -51,13 +52,13 @@ Item {
                         verticalCenter: parent.verticalCenter
                 }
                 text: root.shortName(root.layouts[root.current] ?? "")
-                color: "#E8DBFF"
+                color: "#cdd6f4"
                 font {
                         family: "Monocraft"
                         pixelSize: 14
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 id: rootMouseArea
                 anchors.fill: parent
                 hoverEnabled: true
@@ -88,12 +89,12 @@ Item {
                 implicitHeight: 88
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -110,7 +111,7 @@ Item {
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -133,7 +134,7 @@ Item {
                                                         verticalCenter: parent.verticalCenter
                                                 }
                                                  text: Translation.tr("kblayout.popup.title")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 14
@@ -150,7 +151,7 @@ Item {
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: closeHoverFill
@@ -158,7 +159,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width {
                                                                 NumberAnimation {
@@ -176,13 +177,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -213,7 +214,7 @@ Item {
                                                                 radius: 8
                                                                 color: "transparent"
                                                                 border {
-                                                                        color: index === root.current ? "#B58FFF" : "#4c3a70"
+                                                                        color: index === root.current ? "#89b4fa" : "#45475a"
                                                                         width: index === root.current ? 2 : 1
                                                                 }
                                                                 clip: true
@@ -223,7 +224,7 @@ Item {
                                                                         width: 0
                                                                         height: 0
                                                                         radius: 8
-                                                                        color: "#B58FFF"
+                                                                        color: "#89b4fa"
                                                                         opacity: 0.15
                                                                         Behavior on width {
                                                                                 NumberAnimation {
@@ -241,13 +242,13 @@ Item {
                                                                 Text {
                                                                         anchors.centerIn: parent
                                                                         text: root.shortName(modelData)
-                                                                        color: index === root.current ? "#B58FFF" : "#E8DBFF"
+                                                                        color: index === root.current ? "#89b4fa" : "#cdd6f4"
                                                                         font {
                                                                                 family: "Monocraft"
                                                                                 pixelSize: 13
                                                                         }
                                                                 }
-                                                                MouseArea {
+                                                                MD3.Pressable {
                                                                         id: capsuleArea
                                                                         anchors.fill: parent
                                                                         hoverEnabled: true

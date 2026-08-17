@@ -15,7 +15,7 @@ OSDWindow {
     iconText: profiles[currentProfile]?.icon ?? "\udb83\udf85"
     labelText: profiles[currentProfile]?.label ?? currentProfile
     value: 1
-    accentColor: "#B58FFF"
+    accentColor: "#89b4fa"
     showProgress: false
     Process {
         id: pollProc

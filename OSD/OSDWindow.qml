@@ -7,7 +7,7 @@ PanelWindow {
     property real value: 0
     property string iconText: ""
     property string labelText: ""
-    property color accentColor: "#B58FFF"
+    property color accentColor: "#89b4fa"
     property bool showProgress: true
     visible: false
     color: "transparent"
@@ -56,9 +56,9 @@ PanelWindow {
     Rectangle {
         id: popup
         anchors.fill: parent
-        color: "#cc000000"
+        color: "#ee313244"
         radius: 16
-        border { color: root.accentColor; width: 4 }
+        border { color: root.accentColor; width: 1 }
         opacity: 0
         scale: 0.95
         transformOrigin: Item.Top
@@ -69,7 +69,7 @@ PanelWindow {
             height: 18
             radius: 5
             color: "transparent"
-            border { color: closeArea.containsMouse ? "#B58FFF" : "#4c3a70"; width: 1 }
+            border { color: closeArea.containsMouse ? "#89b4fa" : "#45475a"; width: 1 }
             clip: true
             z: 10
             Rectangle {
@@ -78,7 +78,7 @@ PanelWindow {
                 width: closeArea.containsMouse ? parent.width : 0
                 height: closeArea.containsMouse ? parent.height : 0
                 radius: 5
-                color: "#B58FFF"
+                color: "#89b4fa"
                 opacity: 0.2
                 Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
                 Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
@@ -100,7 +100,7 @@ PanelWindow {
                 spacing: 2
                 Text {
                     text: root.labelText
-                    color: "#E8DBFF"
+                    color: "#cdd6f4"
                     font { family: "Monocraft"; pixelSize: 12 }
                     Layout.alignment: Qt.AlignVCenter
                 }
@@ -108,7 +108,7 @@ PanelWindow {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 6
                     radius: 3
-                    color: "#4c3a70"
+                    color: "#45475a"
                     visible: root.showProgress
                     Rectangle {
                         width: parent.width * Math.max(0, Math.min(1, root.value))

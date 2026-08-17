@@ -40,7 +40,7 @@ Item {
     }
 
     Timer {
-        interval: 10
+        interval: 150
         running: root.active
         repeat: true
         onTriggered: {

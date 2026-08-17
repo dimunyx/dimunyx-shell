@@ -1,4 +1,5 @@
 import QtQuick
+import "../Components" as MD3
 import Quickshell
 import Quickshell.Io
 import QtQuick.Layouts
@@ -579,16 +580,16 @@ readonly property var emojiCategories: [
                 implicitHeight: 400
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
-                        border { color: "#B58FFF"; width: 4 }
+                        border { color: "#89b4fa"; width: 1 }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
                         transformOrigin: Item.Top
                         Behavior on opacity { NumberAnimation { duration: 200; easing.type: Easing.OutQuad } }
                         Behavior on scale { NumberAnimation { duration: 200; easing.type: Easing.OutQuad } }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -606,7 +607,7 @@ readonly property var emojiCategories: [
                                         Text {
                                                 anchors { left: parent.left; verticalCenter: parent.verticalCenter }
                                                 text: root.mode === "emoji" ? Translation.tr("launcher.title.emoji") : (root.mode === "windows" ? Translation.tr("launcher.title.windows") : (root.mode === "clip" ? Translation.tr("launcher.title.clip") : Translation.tr("launcher.title.apps")))
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font { family: "Monocraft"; pixelSize: 14; bold: true }
                                         }
                                         Rectangle {
@@ -617,7 +618,7 @@ readonly property var emojiCategories: [
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: clearHoverFill
@@ -625,7 +626,7 @@ readonly property var emojiCategories: [
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
                                                         Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
@@ -634,10 +635,10 @@ readonly property var emojiCategories: [
                                                         id: clearText
                                                         anchors.centerIn: parent
                                                         text: Translation.tr("launcher.clear")
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font { family: "Monocraft"; pixelSize: 12 }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: clearArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -654,7 +655,7 @@ readonly property var emojiCategories: [
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: closeHoverFill
@@ -662,7 +663,7 @@ readonly property var emojiCategories: [
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
                                                         Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
@@ -670,10 +671,10 @@ readonly property var emojiCategories: [
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font { family: "Monocraft"; pixelSize: 14 }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -695,7 +696,7 @@ readonly property var emojiCategories: [
                                                 height: 32
                                                 radius: 8
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: modeHoverFill
@@ -703,7 +704,7 @@ readonly property var emojiCategories: [
                                                         width: 0
                                                         height: 0
                                                         radius: 8
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
                                                         Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
@@ -715,10 +716,10 @@ readonly property var emojiCategories: [
                                                               (root.mode === "clip" ? "\uf07f" :
                                                               (root.mode === "emoji" ? "\uefa8" :
                                                               (root.mode === "windows" ? "\uf2d0" : "❯_")))
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font { family: "Monocraft"; pixelSize: 17 }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: modeMouseArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -735,7 +736,7 @@ readonly property var emojiCategories: [
                                                 height: 32
                                                 radius: 8
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: categoryHoverFill
@@ -743,7 +744,7 @@ readonly property var emojiCategories: [
                                                         width: 0
                                                         height: 0
                                                         radius: 8
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
                                                         Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
@@ -752,10 +753,10 @@ readonly property var emojiCategories: [
                                                         id: categoryIconText
                                                         anchors.centerIn: parent
                                                         text: getCategoryIcon(root.emojiCategory)
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font.pixelSize: 16
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: categoryMouseArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -785,19 +786,19 @@ readonly property var emojiCategories: [
                                                 width: searchRow.width - modeButton.width - searchRow.spacing - (root.mode === "emoji" ? categoryButton.width + searchRow.spacing : 0)
                                                 height: 32
                                                 radius: 8
-                                                color: "#000000"
-                                                border { color: "#3a3255"; width: 1 }
+                                                color: "#1e1e2e"
+                                                border { color: "#45475a"; width: 1 }
                                                 TextInput {
                                                         id: searchField
                                                         anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                                                         verticalAlignment: TextInput.AlignVCenter
                                                         maximumLength: 128
                                                         font { family: "Monocraft"; pixelSize: 13 }
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         cursorVisible: true
                                                         cursorDelegate: Rectangle {
                                                                 width: 2
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                         }
                                                         onTextChanged: {
                                                                 root.query = searchField.text
@@ -843,10 +844,10 @@ readonly property var emojiCategories: [
                                                               (root.mode === "clip" ? Translation.tr("launcher.search.clip") :
                                                               (root.mode === "emoji" ? Translation.tr("launcher.search.emoji") :
                                                               (root.mode === "windows" ? Translation.tr("launcher.search.windows") : Translation.tr("launcher.search.cmd"))))
-                                                        color: "#5a5070"
+                                                        color: "#585b70"
                                                         font { family: "Monocraft"; pixelSize: 13 }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: searchBoxMouseArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -869,8 +870,8 @@ readonly property var emojiCategories: [
                                         width: 160
                                         height: categoryPopupColumn.height + 8
                                         radius: 10
-                                        color: "#000000"
-                                        border { color: "#4c3a70"; width: 1 }
+                                        color: "#1e1e2e"
+                                        border { color: "#45475a"; width: 1 }
                                         clip: true
                                         opacity: root.categoryPopupOpen ? 1 : 0
                                         scale: root.categoryPopupOpen ? 1 : 0.95
@@ -886,7 +887,7 @@ readonly property var emojiCategories: [
                                                         anchors { left: parent.left; right: parent.right; leftMargin: 2; rightMargin: 2 }
                                                         height: 30
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.15
                                                         y: {
                                                                 var index = root.categoryHoveredIndex
@@ -918,17 +919,17 @@ readonly property var emojiCategories: [
                                                                         anchors { left: parent.left; leftMargin: 8; verticalCenter: parent.verticalCenter }
                                                                         Text {
                                                                                 text: modelData.icon
-                                                                                color: root.emojiCategory === modelData.key ? "#B58FFF" : "#6b5a8f"
+                                                                                color: root.emojiCategory === modelData.key ? "#89b4fa" : "#585b70"
                                                                                 font.pixelSize: 14
                                                                                 width: 20
                                                                         }
                                                                         Text {
                                                                                 text: Translation.tr("launcher.category." + modelData.key)
-                                                                                color: root.emojiCategory === modelData.key ? "#E8DBFF" : "#6b5a8f"
+                                                                                color: root.emojiCategory === modelData.key ? "#cdd6f4" : "#585b70"
                                                                                 font { family: "Monocraft"; pixelSize: 12 }
                                                                         }
                                                                 }
-                                                                MouseArea {
+                                                                MD3.Pressable {
                                                                         anchors.fill: parent
                                                                         hoverEnabled: true
                                                                         cursorShape: Qt.PointingHandCursor
@@ -955,8 +956,8 @@ readonly property var emojiCategories: [
                                         width: 160
                                         height: modeMenuColumn.height + 8
                                         radius: 10
-                                        color: "#000000"
-                                        border { color: "#4c3a70"; width: 1 }
+                                        color: "#1e1e2e"
+                                        border { color: "#45475a"; width: 1 }
                                         clip: true
                                         opacity: root.menuOpen ? 1 : 0
                                         scale: root.menuOpen ? 1 : 0.95
@@ -972,7 +973,7 @@ readonly property var emojiCategories: [
                                                         anchors { left: parent.left; right: parent.right; leftMargin: 2; rightMargin: 2 }
                                                         height: 30
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.15
                                                         y: {
                                                                 var index = root.hoveredIndex
@@ -1008,17 +1009,17 @@ model: [
                                                                         anchors { left: parent.left; leftMargin: 8; verticalCenter: parent.verticalCenter }
                                                                         Text {
                                                                                 text: modelData.glyph
-                                                                                color: root.mode === modelData.key ? "#B58FFF" : "#6b5a8f"
+                                                                                color: root.mode === modelData.key ? "#89b4fa" : "#585b70"
                                                                                 font { family: "Monocraft"; pixelSize: 12 }
                                                                                 width: 16
                                                                         }
                                                                         Text {
                                                                                 text: Translation.tr(modelData.label)
-                                                                                color: root.mode === modelData.key ? "#E8DBFF" : "#6b5a8f"
+                                                                                color: root.mode === modelData.key ? "#cdd6f4" : "#585b70"
                                                                                 font { family: "Monocraft"; pixelSize: 12 }
                                                                         }
                                                                 }
-                                                                MouseArea {
+                                                                MD3.Pressable {
                                                                         id: itemArea
                                                                         anchors.fill: parent
                                                                         hoverEnabled: true
@@ -1038,14 +1039,14 @@ model: [
                                 Rectangle {
                                         anchors { top: searchRow.bottom; topMargin: 8; left: parent.left; right: parent.right }
                                         height: 1
-                                        color: "#3a3255"
+                                        color: "#45475a"
                                 }
                                 Text {
                                         visible: root.mode === "cmd"
                                         anchors { top: searchRow.bottom; topMargin: 16; left: parent.left; right: parent.right }
                                         horizontalAlignment: Text.AlignHCenter
                                                 text: Translation.tr("launcher.cmd.hint")
-                                        color: "#5a5070"
+                                        color: "#585b70"
                                         font { family: "Monocraft"; pixelSize: 12 }
                                 }
                                 Text {
@@ -1053,7 +1054,7 @@ model: [
                                         anchors { top: searchRow.bottom; topMargin: 16; left: parent.left; right: parent.right }
                                         horizontalAlignment: Text.AlignHCenter
                                         text: Translation.tr("launcher.clip.empty")
-                                        color: "#5a5070"
+                                        color: "#585b70"
                                         font { family: "Monocraft"; pixelSize: 12 }
                                 }
                                 Text {
@@ -1061,7 +1062,7 @@ model: [
                                         anchors { top: searchRow.bottom; topMargin: 16; left: parent.left; right: parent.right }
                                         horizontalAlignment: Text.AlignHCenter
                                         text: Translation.tr("launcher.emoji.emptyCat")
-                                        color: "#5a5070"
+                                        color: "#585b70"
                                         font { family: "Monocraft"; pixelSize: 12 }
                                 }
                                 Text {
@@ -1069,7 +1070,7 @@ model: [
                                         anchors { top: searchRow.bottom; topMargin: 16; left: parent.left; right: parent.right }
                                         horizontalAlignment: Text.AlignHCenter
                                         text: Translation.tr("launcher.emoji.notFound")
-                                        color: "#5a5070"
+                                        color: "#585b70"
                                         font { family: "Monocraft"; pixelSize: 12 }
                                 }
                                 Text {
@@ -1077,7 +1078,7 @@ model: [
                                         anchors { top: searchRow.bottom; topMargin: 16; left: parent.left; right: parent.right }
                                         horizontalAlignment: Text.AlignHCenter
                                         text: Translation.tr("launcher.loading.emoji")
-                                        color: "#5a5070"
+                                        color: "#585b70"
                                         font { family: "Monocraft"; pixelSize: 12 }
                                 }
                                 Text {
@@ -1085,7 +1086,7 @@ model: [
                                         anchors { top: searchRow.bottom; topMargin: 16; left: parent.left; right: parent.right }
                                         horizontalAlignment: Text.AlignHCenter
                                         text: Translation.tr("launcher.windows.empty")
-                                        color: "#5a5070"
+                                        color: "#585b70"
                                         font { family: "Monocraft"; pixelSize: 12 }
                                 }
                                 Text {
@@ -1093,7 +1094,7 @@ model: [
                                         anchors { top: searchRow.bottom; topMargin: 16; left: parent.left; right: parent.right }
                                         horizontalAlignment: Text.AlignHCenter
                                         text: Translation.tr("launcher.windows.notFound")
-                                        color: "#5a5070"
+                                        color: "#585b70"
                                         font { family: "Monocraft"; pixelSize: 12 }
                                 }
                                 Item {
@@ -1123,13 +1124,13 @@ model: [
                                                         contentItem: Rectangle {
                                                                 implicitWidth: 10
                                                                 radius: 5
-                                                                color: "#B58FFF"
-                                                                border { color: "#8B6FD4"; width: 1 }
+                                                                color: "#89b4fa"
+                                                                border { color: "#89b4fa"; width: 1 }
                                                         }
                                                         background: Rectangle {
                                                                 implicitWidth: 10
                                                                 radius: 5
-                                                                color: "#1a1225"
+                                                                color: "#313244"
                                                         }
                                                 }
                                                 Rectangle {
@@ -1138,7 +1139,7 @@ model: [
                                                         width: parent.width - 16
                                                         height: 48
                                                         radius: 8
-                                                        color: "#3a3055"
+                                                        color: "#45475a"
                                                         opacity: 0
                                                         y: {
                                                                 var index = root.listHoveredIndex
@@ -1164,13 +1165,13 @@ model: [
                                                                         radius: 8
                                                                         color: "transparent"
                                                                         border {
-                                                                                color: root.listHoveredIndex === index ? "#B58FFF" : "#4c3a70"
+                                                                                color: root.listHoveredIndex === index ? "#89b4fa" : "#45475a"
                                                                                 width: root.listHoveredIndex === index ? 2 : 1
                                                                         }
                                                                         Behavior on border.color {
                                                                                 ColorAnimation { duration: 150 }
                                                                         }
-                                                                        MouseArea {
+                                                                        MD3.Pressable {
                                                                                 id: itemMouseArea
                                                                                 anchors.fill: parent
                                                                                 hoverEnabled: true
@@ -1254,8 +1255,8 @@ model: [
                                                                                         Rectangle {
                                                                                                 anchors.fill: parent
                                                                                                 radius: 4
-                                                                                                color: "#2a2040"
-                                                                                                border { color: "#4c3a70"; width: 1 }
+                                                                                                color: "#313244"
+                                                                                                border { color: "#45475a"; width: 1 }
                                                                                                 visible: {
                                                                                                         if (modelData.type === "window") {
                                                                                                                 return !itemIcon.source || itemIcon.source === ""
@@ -1266,7 +1267,7 @@ model: [
                                                                                                         anchors.centerIn: parent
                                                                                                         text: ""
                                                                                                         font { family: "Monocraft"; pixelSize: 16 }
-                                                                                                        color: "#6b5a8f"
+                                                                                                        color: "#585b70"
                                                                                                 }
                                                                                         }
                                                                                 }
@@ -1286,7 +1287,7 @@ model: [
                                                                                         height: 20
                                                                                         radius: 5
                                                                                         color: modelData.type === "clip" ? modelData.name.trim() : "transparent"
-                                                                                        border { color: "#4c3a70"; width: 1 }
+                                                                                        border { color: "#45475a"; width: 1 }
                                                                                         anchors.verticalCenter: parent.verticalCenter
                                                                                 }
                                                                                 Text {
@@ -1297,7 +1298,7 @@ model: [
                                                                                         horizontalAlignment: Text.AlignHCenter
                                                                                         verticalAlignment: Text.AlignVCenter
                                                                                         font { family: "Monocraft"; pixelSize: 18 }
-                                                                                        color: "#B58FFF"
+                                                                                        color: "#89b4fa"
                                                                                         anchors.verticalCenter: parent.verticalCenter
                                                                                 }
                                                                                 Text {
@@ -1308,7 +1309,7 @@ model: [
                                                                                         horizontalAlignment: Text.AlignHCenter
                                                                                         verticalAlignment: Text.AlignVCenter
                                                                                         font { family: "Monocraft"; pixelSize: 18 }
-                                                                                        color: "#B58FFF"
+                                                                                        color: "#89b4fa"
                                                                                         anchors.verticalCenter: parent.verticalCenter
                                                                                 }
                                                                                 Rectangle {
@@ -1316,7 +1317,7 @@ model: [
                                                                                         width: 6
                                                                                         height: 6
                                                                                         radius: 3
-                                                                                        color: modelData.isFocused ? "#B58FFF" : "#3a3255"
+                                                                                        color: modelData.isFocused ? "#89b4fa" : "#45475a"
                                                                                         anchors.verticalCenter: parent.verticalCenter
                                                                                         Rectangle {
                                                                                                 visible: modelData.isFocused
@@ -1325,7 +1326,7 @@ model: [
                                                                                                 height: 10
                                                                                                 radius: 5
                                                                                                 color: "transparent"
-                                                                                                border { color: "#B58FFF"; width: 1 }
+                                                                                                border { color: "#89b4fa"; width: 1 }
                                                                                                 opacity: 0.3
                                                                                         }
                                                                                 }
@@ -1335,7 +1336,7 @@ model: [
                                                                                                 text: modelData.type === "emoji" ? (modelData.emojiData ? modelData.emojiData.name || "Unnamed" : "Unnamed") :
                                                                                                       (modelData.type === "loading" ? Translation.tr("launcher.loading.generic") : (modelData.name || "Unnamed"))
                                                                                                 font { family: "Monocraft"; pixelSize: 13 }
-                                                                                                color: modelData.type === "loading" ? "#5a5070" : "#E8DBFF"
+                                                                                                color: modelData.type === "loading" ? "#585b70" : "#cdd6f4"
                                                                                                 maximumLineCount: 1
                                                                                                 elide: Text.ElideRight
                                                                                                 width: listColumn.width - (modelData.type === "emoji" ? 60 : (modelData.type === "window" ? 70 : 50))
@@ -1344,7 +1345,7 @@ model: [
                                                                                                 visible: modelData.type === "window"
                                                                                                 text: modelData.appId || ""
                                                                                                 font { family: "Monocraft"; pixelSize: 10 }
-                                                                                                color: "#5a5070"
+                                                                                                color: "#585b70"
                                                                                                 maximumLineCount: 1
                                                                                                 elide: Text.ElideRight
                                                                                                 width: listColumn.width - 70

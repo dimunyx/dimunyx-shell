@@ -1,12 +1,13 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import "../Components" as MD3
 import QtQuick.Layouts
 import "../Services"
 Item {
         id: root
         implicitWidth: sessionIcon.implicitWidth
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property var lockScreen: null
         property bool popupOpen: false
@@ -49,7 +50,7 @@ Item {
         Text {
                 id: sessionIcon
                 text: "\uf011"
-                color: "#B58FFF"
+                color: "#89b4fa"
                 font {
                         family: "Font Awesome 6 Free"
                         pixelSize: 24
@@ -66,7 +67,7 @@ Item {
                         }
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
@@ -108,11 +109,11 @@ Item {
                 implicitHeight: popupContent.implicitHeight + 24
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 16
                         clip: true
                         border {
-                                color: "#B58FFF"
+                                color: "#89b4fa"
                                 width: 3
                         }
                         opacity: root.popupOpen ? 1 : 0
@@ -130,7 +131,7 @@ Item {
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -160,7 +161,7 @@ Item {
                                                         verticalCenter: parent.verticalCenter
                                                 }
                                                  text: Translation.tr("session.popup.title")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 13
@@ -178,7 +179,7 @@ Item {
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: closeHoverFill
@@ -186,7 +187,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width {
                                                                 NumberAnimation {
@@ -204,13 +205,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -230,15 +231,15 @@ Item {
                                 Rectangle {
                                         width: parent.width
                                         height: 1
-                                        color: "#3a3255"
+                                        color: "#45475a"
                                 }
 				Repeater {
                                         id: listRepeater
                                         model: [
-						{ icon: "", label: Translation.tr("session.lock"), color: "#B58FFF", cmd: "lock" },
-						{ icon: "", label: Translation.tr("session.poweroff"), color: "#B58FFF", cmd: "systemctl poweroff" },
-						{ icon: "", label: Translation.tr("session.reboot"), color: "#B58FFF", cmd: "systemctl reboot" },
-						{ icon: "", label: Translation.tr("session.sleep"), color: "#B58FFF", cmd: "suspend" }
+						{ icon: "", label: Translation.tr("session.lock"), color: "#89b4fa", cmd: "lock" },
+						{ icon: "", label: Translation.tr("session.poweroff"), color: "#89b4fa", cmd: "systemctl poweroff" },
+						{ icon: "", label: Translation.tr("session.reboot"), color: "#89b4fa", cmd: "systemctl reboot" },
+						{ icon: "", label: Translation.tr("session.sleep"), color: "#89b4fa", cmd: "suspend" }
                                         ]
                                         delegate: Rectangle {
                                                 id: itemDelegate
@@ -247,7 +248,7 @@ Item {
                                                 radius: 8
                                                 color: "transparent"
                                                 border {
-							color: root.hoveredIndex === index ? "#B58FFF" : "#4c3a70"
+							color: root.hoveredIndex === index ? "#89b4fa" : "#45475a"
                                                         width: root.hoveredIndex === index ? 2 : 1
                                                 }
                                                 Behavior on border.color {
@@ -257,7 +258,7 @@ Item {
                                                         id: capsule
                                                         anchors.fill: parent
                                                         radius: 8
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: root.hoveredIndex === index ? 0.15 : 0
                                                         Behavior on opacity {
                                                                 NumberAnimation { duration: 150 }
@@ -284,7 +285,7 @@ Item {
                                                         }
                                                         Text {
                                                                 text: modelData.label
-                                                                color: root.hoveredIndex === index ? "#E8DBFF" : "#aaaaaa"
+                                                                color: root.hoveredIndex === index ? "#cdd6f4" : "#a6adc8"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 13
@@ -296,7 +297,7 @@ Item {
                                                                 }
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: itemMouseArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true

@@ -7,7 +7,7 @@ OSDWindow {
     iconText: "󰌾"
     labelText: Translation.tr("osd.lock.screen")
     value: 1
-    accentColor: "#B58FFF"
+    accentColor: "#89b4fa"
     showProgress: false
     Timer {
         interval: 300

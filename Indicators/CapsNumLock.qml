@@ -6,8 +6,8 @@ Item {
         id: root
         implicitHeight: 24
         implicitWidth: row.implicitWidth + 6
-        property color activeColor: "#B58FFF"
-        property color inactiveColor: "#4c3a70"
+        property color activeColor: "#89b4fa"
+        property color inactiveColor: "#45475a"
         property bool capsOn: false
         property bool numOn: false
         Process {

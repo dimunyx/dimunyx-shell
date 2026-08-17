@@ -61,7 +61,7 @@ Item {
 
     Timer {
         id: wsRestartTimer
-        interval: 10
+        interval: 150
         onTriggered: workspaceProcess.running = root.active
     }
 

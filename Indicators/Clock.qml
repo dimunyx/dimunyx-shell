@@ -1,11 +1,12 @@
 import Quickshell
 import QtQuick
+import "../Components" as MD3
 import QtQuick.Layouts
 import "../Services"
 Item {
         id: root
         implicitWidth: clockText.implicitWidth + 10
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -135,7 +136,7 @@ Item {
         Text {
                 id: clockText
                 text: timeText()
-                color: "#E8DBFF"
+                color: "#cdd6f4"
                 anchors {
                         left: parent.left
                         verticalCenter: parent.verticalCenter
@@ -146,7 +147,7 @@ Item {
                         pixelSize: 14
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
@@ -174,12 +175,12 @@ Item {
                 implicitHeight: popupContent.implicitHeight + 24
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -216,7 +217,7 @@ Item {
                                                 spacing: 6
                                                 Text {
                                                         text: Translation.tr("clock.popup.title")
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
@@ -240,7 +241,7 @@ Item {
                                                         onPaint: {
                                                                 var ctx = getContext("2d")
                                                                 ctx.clearRect(0, 0, width, height)
-                                                                ctx.strokeStyle = "#B58FFF"
+                                                                ctx.strokeStyle = "#89b4fa"
                                                                 ctx.lineWidth = 2.5
                                                                 ctx.lineCap = "round"
                                                                 ctx.lineJoin = "round"
@@ -250,7 +251,7 @@ Item {
                                                                 ctx.lineTo(width * 0.7, height * 0.8)
                                                                 ctx.stroke()
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: prevArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -274,7 +275,7 @@ Item {
                                                         onPaint: {
                                                                 var ctx = getContext("2d")
                                                                 ctx.clearRect(0, 0, width, height)
-                                                                ctx.strokeStyle = "#B58FFF"
+                                                                ctx.strokeStyle = "#89b4fa"
                                                                 ctx.lineWidth = 2.5
                                                                 ctx.lineCap = "round"
                                                                 ctx.lineJoin = "round"
@@ -284,7 +285,7 @@ Item {
                                                                 ctx.lineTo(width * 0.3, height * 0.8)
                                                                 ctx.stroke()
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: nextArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -300,7 +301,7 @@ Item {
                                                         height: 24
                                                         radius: 6
                                                         color: "transparent"
-                                                        border { color: "#4c3a70"; width: 1 }
+                                                        border { color: "#45475a"; width: 1 }
                                                         clip: true
                                                         Rectangle {
                                                                 id: closeHoverFill
@@ -308,7 +309,7 @@ Item {
                                                                 width: 0
                                                                 height: 0
                                                                 radius: 6
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 opacity: 0.2
                                                                 Behavior on width {
                                                                         NumberAnimation {
@@ -326,13 +327,13 @@ Item {
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: "\uf00d"
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 14
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: closeArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -353,7 +354,7 @@ Item {
                                 Text {
                                         width: parent.width
                                         text: monthName(root.viewMonth) + " " + root.viewYear
-                                        color: "#E8DBFF"
+                                        color: "#cdd6f4"
                                         horizontalAlignment: Text.AlignLeft
                                         font {
                                                 family: "Monocraft"
@@ -380,7 +381,7 @@ Item {
                                                         model: [Translation.tr("clock.cal.day.mon"), Translation.tr("clock.cal.day.tue"), Translation.tr("clock.cal.day.wed"), Translation.tr("clock.cal.day.thu"), Translation.tr("clock.cal.day.fri"), Translation.tr("clock.cal.day.sat"), Translation.tr("clock.cal.day.sun")]
                                                         Text {
                                                                 text: modelData
-                                                                color: "#4c3a70"
+                                                                color: "#45475a"
                                                                 horizontalAlignment: Text.AlignHCenter
                                                                 font {
                                                                         family: "Monocraft"
@@ -408,9 +409,9 @@ Item {
                                                                 color: {
                                                                         if (modelData === 0) return "transparent"
                                                                         if (modelData === root.now.getDate() && root.viewMonth === root.now.getMonth() && root.viewYear === root.now.getFullYear()) {
-                                                                                return "#B58FFF"
+                                                                                return "#89b4fa"
                                                                         }
-                                                                        return "#E8DBFF"
+                                                                        return "#cdd6f4"
                                                                 }
                                                                 font.bold: modelData === root.now.getDate() && root.viewMonth === root.now.getMonth() && root.viewYear === root.now.getFullYear()
                                                                 horizontalAlignment: Text.AlignHCenter
@@ -435,7 +436,7 @@ Item {
                                                         family: "Monocraft"
                                                         pixelSize: 40
                                                 }
-                                                color: "#B58FFF"
+                                                color: "#89b4fa"
                                                 text: weatherLoaded ? getWeatherIcon(weatherIcon) : ""
                                         }
                                         ColumnLayout {
@@ -443,7 +444,7 @@ Item {
                                                 Layout.fillWidth: true
                                                 Text {
                                                         text: weatherLoaded ? Math.round(temperature) + (units === "metric" ? "°C" : "°F") : "--°C"
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 20
@@ -452,7 +453,7 @@ Item {
                                                 }
                                                 Text {
                                                         text: weatherLoaded ? weatherDescription : Translation.tr("clock.loading")
-                                                        color: "#a89cc0"
+                                                        color: "#a6adc8"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 12

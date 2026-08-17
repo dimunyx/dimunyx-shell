@@ -4,13 +4,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     wall-archive.url = "github:vimlinuz/wall-archive";
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, wall-archive, quickshell }:
+  outputs = { self, nixpkgs, wall-archive }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -26,7 +22,7 @@
         pkgs.bluez
       ];
 
-      qsPkg = quickshell.packages.${system}.default;
+      qsPkg = pkgs.quickshell;
 
       quickshell-wrapped = pkgs.symlinkJoin {
         name = "quickshell-wrapped-${qsPkg.version}";

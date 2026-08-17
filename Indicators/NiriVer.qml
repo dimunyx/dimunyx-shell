@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import "../Components" as MD3
 import QtQuick.Layouts
 import "../Services/WM"
 Item {
@@ -41,7 +42,7 @@ Item {
                                 id: versionText
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: WM.version
-                                color: "#E8DBFF"
+                                color: "#cdd6f4"
                                 opacity: niriMouseArea.containsMouse ? 1 : 0
                                 font {
                                         family: "Monocraft"
@@ -58,7 +59,7 @@ Item {
                         }
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 id: niriMouseArea
                 anchors.fill: parent
                 hoverEnabled: true

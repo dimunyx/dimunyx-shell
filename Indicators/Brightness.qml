@@ -1,12 +1,13 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import "../Components" as MD3
 import QtQuick.Layouts
 import "../Services"
 Item {
         id: root
         implicitWidth: brightRow.implicitWidth
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -95,7 +96,7 @@ Item {
                 Text {
                         id: brightIcon
                         text: brightnessIcon()
-                        color: "#B58FFF"
+                        color: "#89b4fa"
                         scale: 1
                         font {
                                 family: "Monocraft"
@@ -146,7 +147,7 @@ Item {
                                 id: brightPct
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: root.brightnessPct + "%"
-                                color: "#E8DBFF"
+                                color: "#cdd6f4"
                                 opacity: root.pctVisible ? 1 : 0
                                 font {
                                         family: "Monocraft"
@@ -161,7 +162,7 @@ Item {
                         }
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 anchors.fill: parent
                 hoverEnabled: true
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
@@ -207,12 +208,12 @@ Item {
                 implicitHeight: popupContent.implicitHeight + 16
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -245,7 +246,7 @@ Item {
                                         height: 24
                                         Text {
                                                  text: Translation.tr("brightness.popup.title")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 14
@@ -262,7 +263,7 @@ Item {
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: closeHoverFill
@@ -270,7 +271,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width {
                                                                 NumberAnimation {
@@ -288,13 +289,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -319,7 +320,7 @@ Item {
                                                 spacing: 8
                                                 Text {
                                                         text: root.brightnessIcon()
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 18
@@ -329,9 +330,9 @@ Item {
                                                         Layout.fillWidth: true
                                                         height: 18
                                                         radius: 20
-                                                        color: "#110d1a"
+                                                        color: "#181825"
                                                         border {
-                                                                color: "#4c3a70"
+                                                                color: "#45475a"
                                                                 width: 0.5
                                                         }
                                                         Rectangle {
@@ -339,7 +340,7 @@ Item {
                                                                 width: parent.width * Math.max(0, Math.min(1, root.vBrightness))
                                                                 height: parent.height
                                                                 radius: 20
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 Behavior on width {
                                                                         NumberAnimation {
                                                                                 duration: 120
@@ -347,7 +348,7 @@ Item {
                                                                         }
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: barMouse
                                                                 anchors.fill: parent
                                                                 cursorShape: Qt.PointingHandCursor
@@ -384,7 +385,7 @@ Item {
                                                 }
                                                 Text {
                                                         text: root.brightnessPct + "%"
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 11

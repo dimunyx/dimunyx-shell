@@ -3,17 +3,19 @@ import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
 import "../Services/WM"
+import "../Components" as MD3
 Item {
         id: root
         implicitWidth: 220
         implicitHeight: 24
         property bool scrollCooldown: false
+        property int pendingIndex: -1
         ListModel {
                 id: workspaceModel
         }
         property var workspaces: WM.workspaces
         onWorkspacesChanged: {
-                var json = workspaces
+                var json = workspaces ? workspaces.slice() : []
                 json.sort(function(a,b) { return a.idx - b.idx })
                 while (workspaceModel.count > json.length) {
                         workspaceModel.remove(workspaceModel.count - 1)
@@ -31,7 +33,14 @@ Item {
                         workspaceModel.setProperty(i, "idx", ws.idx)
                         workspaceModel.setProperty(i, "focused", ws.focused)
                         workspaceModel.setProperty(i, "occupied", ws.occupied)
+                        if (ws.focused && pendingIndex === ws.idx)
+                                pendingIndex = -1
                 }
+        }
+        Timer {
+                id: pendingResetTimer
+                interval: 500
+                onTriggered: root.pendingIndex = -1
         }
         function changeWorkspace(direction) {
                 let current = -1
@@ -83,27 +92,28 @@ Item {
         Row {
                 id: workspaceRow
                 anchors.centerIn: parent
-                spacing: 4
+                spacing: 6
                 Repeater {
                         model: workspaceModel
                         delegate: Rectangle {
                                 required property bool focused
                                 required property bool occupied
                                 required property int idx
-                                width: focused ? 36 : 18
-                                height: 18
-                                radius: 20
+                                property bool pressed: workspaceMouse.pressed
+                                width: focused || root.pendingIndex === idx ? 40 : 24
+                                height: 24
+                                radius: 12
                                 color: {
-                                        if (focused)
-                                        return "#B58FFF"
-                                        if (occupied)
+                                if (focused)
+                                        return MD3.Theme.primary
+                                if (occupied)
                                         return Qt.rgba(
-                                                181 / 255,
-                                                143 / 255,
-                                                255 / 255,
+                                                MD3.Theme.primary.r,
+                                                MD3.Theme.primary.g,
+                                                MD3.Theme.primary.b,
                                                 0.9
                                         )
-                                        return "#4c3a70"
+                                        return MD3.Theme.outlineVariant
                                 }
                                 Behavior on width {
                                         NumberAnimation {
@@ -121,13 +131,23 @@ Item {
                                                 }
                                         }
                                 }
+                                Behavior on scale {
+                                        NumberAnimation {
+                                                duration: 90
+                                                easing.type: Easing.OutQuad
+                                        }
+                                }
+                                scale: pressed ? 0.94 : 1
                                 MouseArea {
+                                        id: workspaceMouse
                                         anchors {
                                                 fill: parent
                                         }
+                                        hoverEnabled: false
                                         cursorShape: Qt.PointingHandCursor
                                         onClicked: {
-                                                console.warn("Workspaces: clicked idx=" + idx + " focused=" + focused + " occupied=" + occupied)
+                                                root.pendingIndex = idx
+                                                pendingResetTimer.restart()
                                                 WM.switchWorkspace(idx)
                                         }
                                 }

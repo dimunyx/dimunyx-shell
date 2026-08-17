@@ -11,7 +11,7 @@ OSDWindow {
     iconText: brightnessPct === 0 ? "\udb80\udcde" : (brightnessPct < 33 ? "\udb80\udcdd" : (brightnessPct < 66 ? "\udb80\udcdf" : "\udb80\udce0"))
     labelText: brightnessPct + "%"
     value: brightnessPct / 100
-    accentColor: "#B58FFF"
+    accentColor: "#89b4fa"
     showProgress: true
     Process {
         id: maxProc

@@ -1,4 +1,5 @@
 import QtQuick
+import "../Components" as MD3
 import Quickshell
 import Quickshell.Io
 import QtQuick.Layouts
@@ -6,7 +7,7 @@ import "../Services"
 Item {
         id: root
         implicitWidth: powerRow.implicitWidth
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -86,7 +87,7 @@ readonly property var profiles: [
                 Text {
                         id: powerIcon
                         text: root.profileIcon
-                        color: "#B58FFF"
+                        color: "#89b4fa"
                         scale: 1
                         font {
                                 family: "Monocraft"
@@ -125,7 +126,7 @@ readonly property var profiles: [
                                         verticalCenter: parent.verticalCenter
                                 }
                                 text: root.profileLabel
-                                color: "#E8DBFF"
+                                color: "#cdd6f4"
                                 opacity: root.pctVisible ? 1 : 0
                                 font {
                                         family: "Monocraft"
@@ -140,38 +141,12 @@ readonly property var profiles: [
                         }
                 }
         }
-        Rectangle {
-                anchors.fill: parent
-                radius: 6
-                color: "transparent"
-                Rectangle {
-                        anchors.centerIn: parent
-                        width: powerArea.containsMouse ? parent.width : 0
-                        height: powerArea.containsMouse ? parent.height : 0
-                        radius: 6
-                        color: "#B58FFF"
-                        opacity: 0.1
-                        Behavior on width {
-                                NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
-                        }
-                        Behavior on height {
-                                NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
-                        }
-                }
-        }
-        MouseArea {
+        MD3.Pressable {
                 id: powerArea
                 anchors.fill: parent
-                hoverEnabled: true
+                hoverEnabled: false
                 cursorShape: Qt.PointingHandCursor
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
-                onEntered: {
-                        root.pctVisible = true
-                        pctHideTimer.stop()
-                }
-                onExited: {
-                        pctHideTimer.restart()
-                }
                 onClicked: {
                         powerIcon.scale = 1.25
                         powerIconReset.start()
@@ -198,12 +173,12 @@ readonly property var profiles: [
                 implicitHeight: popupContent.implicitHeight + 24
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -220,9 +195,9 @@ readonly property var profiles: [
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
-                                hoverEnabled: true
+                                hoverEnabled: false
                                 propagateComposedEvents: true
                                 onPressed: function(mouse) {
                                         mouse.accepted = true
@@ -247,7 +222,7 @@ readonly property var profiles: [
                                                 spacing: 8
                                                 Text {
                                                         text: Translation.tr("power.popup.title")
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
@@ -263,51 +238,22 @@ readonly property var profiles: [
                                                         height: 24
                                                         radius: 6
                                                         color: "transparent"
-                                                        border { color: "#4c3a70"; width: 1 }
+                                                        border { color: "#45475a"; width: 1 }
                                                         clip: true
-                                                        Rectangle {
-                                                                id: closeHoverFill
-                                                                anchors.centerIn: parent
-                                                                width: 0
-                                                                height: 0
-                                                                radius: 6
-                                                                color: "#B58FFF"
-                                                                opacity: 0.2
-                                                                Behavior on width {
-                                                                        NumberAnimation {
-                                                                                duration: 300
-                                                                                easing.type: Easing.OutQuad
-                                                                        }
-                                                                }
-                                                                Behavior on height {
-                                                                        NumberAnimation {
-                                                                                duration: 300
-                                                                                easing.type: Easing.OutQuad
-                                                                        }
-                                                                }
-                                                        }
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: "\uf00d"
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 14
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: closeArea
                                                                 anchors.fill: parent
-                                                                hoverEnabled: true
+                                                                hoverEnabled: false
                                                                 cursorShape: Qt.PointingHandCursor
-                                                                onEntered: {
-                                                                        closeHoverFill.width = parent.width
-                                                                        closeHoverFill.height = parent.height
-                                                                }
-                                                                onExited: {
-                                                                        closeHoverFill.width = 0
-                                                                        closeHoverFill.height = 0
-                                                                }
                                                                 onClicked: root.popupOpen = false
                                                         }
                                                 }
@@ -316,12 +262,12 @@ readonly property var profiles: [
                                 Rectangle {
                                         width: parent.width
                                         height: 1
-                                        color: "#3a3255"
+                                        color: "#45475a"
                                 }
                                 Text {
                                         width: parent.width
 									text: Translation.trf("power.current", Translation.tr("power." + root.currentProfile))
-                                        color: "#B58FFF"
+                                        color: "#89b4fa"
                                         font {
                                                 family: "Monocraft"
                                                 pixelSize: 12
@@ -330,7 +276,7 @@ readonly property var profiles: [
                                 Rectangle {
                                         width: parent.width
                                         height: 1
-                                        color: "#3a3255"
+                                        color: "#45475a"
                                 }
                                 Column {
                                         id: profilesColumn
@@ -343,25 +289,11 @@ readonly property var profiles: [
                                                         width: parent.width
                                                         height: 32
                                                         radius: 6
-                                                        color: "#0d0815"
-                                                        border {
-                                                                color: root.currentProfile === modelData.key || hoverArea.containsMouse ? "#B58FFF" : "#3a3255"
-                                                                width: root.currentProfile === modelData.key || hoverArea.containsMouse ? 2 : 1
-                                                        }
-                                                        Rectangle {
-                                                                anchors.centerIn: parent
-                                                                width: hoverArea.containsMouse ? parent.width : 0
-                                                                height: hoverArea.containsMouse ? parent.height : 0
-                                                                radius: 6
-                                                                color: "#B58FFF"
-                                                                opacity: 0.15
-                                                                Behavior on width {
-                                                                        NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
+                                                        color: "#181825"
+                                                                border {
+                                                                        color: root.currentProfile === modelData.key ? "#89b4fa" : "#45475a"
+                                                                        width: root.currentProfile === modelData.key ? 2 : 1
                                                                 }
-                                                                Behavior on height {
-                                                                        NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
-                                                                }
-                                                        }
                                                         RowLayout {
                                                                 anchors {
                                                                         fill: parent
@@ -371,12 +303,12 @@ readonly property var profiles: [
                                                                 spacing: 8
                                                                 Text {
                                                                         text: modelData.icon
-                                                                        color: root.currentProfile === modelData.key ? "#B58FFF" : "#4c3a70"
+                                                                        color: root.currentProfile === modelData.key ? "#89b4fa" : "#45475a"
                                                                         font.pixelSize: 16
                                                                 }
 									Text {
 										text: Translation.tr("power." + modelData.key)
-                                                                        color: root.currentProfile === modelData.key ? "#E8DBFF" : "#6b5a8f"
+                                                                        color: root.currentProfile === modelData.key ? "#cdd6f4" : "#585b70"
                                                                         font {
                                                                                 family: "Monocraft"
                                                                                 pixelSize: 14
@@ -388,13 +320,13 @@ readonly property var profiles: [
                                                                         width: 6
                                                                         height: 6
                                                                         radius: 3
-                                                                        color: "#B58FFF"
+                                                                        color: "#89b4fa"
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: hoverArea
                                                                 anchors.fill: parent
-                                                                hoverEnabled: true
+                                                                hoverEnabled: false
                                                                 cursorShape: Qt.PointingHandCursor
                                                                 onClicked: {
                                                                         if (root.currentProfile !== modelData.key) {

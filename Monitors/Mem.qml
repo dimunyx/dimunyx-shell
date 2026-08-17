@@ -1,4 +1,5 @@
 import QtQuick
+import "../Components" as MD3
 import Quickshell
 import Quickshell.Io
 import QtQuick.Layouts
@@ -7,7 +8,7 @@ import "../Services"
 Item {
         id: root
         implicitWidth: memRow.implicitWidth
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -30,7 +31,7 @@ Item {
         property bool pctVisible: false
         Timer {
                 id: animTimer
-                interval: 16
+                interval: 12
                 repeat: true
                 running: true
                 onTriggered: {
@@ -122,7 +123,7 @@ Item {
                 Text {
                         id: memIcon
                         text: ""
-                        color: "#B58FFF"
+                        color: "#89b4fa"
                         scale: 1
                         font {
                                 family: "Monocraft"
@@ -158,7 +159,7 @@ Item {
                                 id: memPct
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: Math.round(root.memUsage) + "%"
-                                color: "#E8DBFF"
+                                color: "#cdd6f4"
                                 opacity: root.pctVisible ? 1 : 0
                                 font {
                                         family: "Monocraft"
@@ -173,7 +174,7 @@ Item {
                         }
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 id: rootMouseArea
                 anchors.fill: parent
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
@@ -221,12 +222,12 @@ Item {
                 implicitHeight: 170
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -243,7 +244,7 @@ Item {
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -273,7 +274,7 @@ Item {
                                                         verticalCenter: parent.verticalCenter
                                                 }
                                                  text: " " + Translation.tr("monitor.mem.popup.title")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 14
@@ -287,7 +288,7 @@ Item {
                                                         verticalCenter: parent.verticalCenter
                                                 }
                                                 text: Math.round(root.memUsage) + "% (" + root.memUsedGiB.toFixed(1) + "GB)"
-                                                color: "#B58FFF"
+                                                color: "#89b4fa"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 11
@@ -303,7 +304,7 @@ Item {
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: closeHoverFill
@@ -311,7 +312,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width {
                                                                 NumberAnimation {
@@ -329,13 +330,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -365,7 +366,7 @@ Item {
                                                 spacing: 6
                                                 Text {
                                                         text: "Swap:"
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 11
@@ -373,7 +374,7 @@ Item {
                                                 }
                                                 Text {
                                                         text: Math.round(root.swapUsage) + "%"
-                                                        color: "#C79AFF"
+                                                        color: "#b4befe"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 11
@@ -381,7 +382,7 @@ Item {
                                                 }
                                                 Text {
                                                         text: "(" + root.swapUsedGiB.toFixed(1) + "GB)"
-                                                        color: "#8B7AB8"
+                                                        color: "#6c7086"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 10
@@ -390,7 +391,7 @@ Item {
                                                 }
                                                 Text {
                                                          text: "(not used)"
-                                                        color: "#6B5A8A"
+                                                        color: "#585b70"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 10
@@ -424,7 +425,7 @@ Item {
                                                         ctx.save()
                                                         ctx.font = "11px Monocraft"
                                                         ctx.textAlign = "left"
-                                                        ctx.fillStyle = "#E8DBFF"
+                                                        ctx.fillStyle = "#cdd6f4"
                                                         var labels = ["100%", "75%", "50%", "25%", "0%"]
                                                         var lw = 32
                                                         for (var k = 0; k < 5; k++) {
@@ -461,7 +462,7 @@ Item {
                                                                 ctx.quadraticCurveTo(lw + (j - s) * pw, py(val(data, j)), xc, yc)
                                                         }
                                                         ctx.lineTo(lw + (pts - 1 - s) * pw, py(val(data, pts - 1)))
-                                                        ctx.strokeStyle = "#B58FFF"
+                                                        ctx.strokeStyle = "#89b4fa"
                                                         ctx.lineWidth = 3
                                                         ctx.stroke()
                                                         ctx.beginPath()
@@ -483,7 +484,7 @@ Item {
                                                                         ctx.quadraticCurveTo(lw + (jj - s) * pw, py(val(sdata, jj)), xc2, yc2)
                                                                 }
                                                                 ctx.lineTo(lw + (pts - 1 - s) * pw, py(val(sdata, pts - 1)))
-                                                                ctx.strokeStyle = "#C79AFF"
+                                                                ctx.strokeStyle = "#b4befe"
                                                                 ctx.lineWidth = 2
                                                                 ctx.stroke()
                                                         }

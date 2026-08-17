@@ -2,12 +2,13 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Services.UPower
 import QtQuick
+import "../Components" as MD3
 import QtQuick.Layouts
 import "../Services"
 Item {
         id: root
         implicitWidth: capsule.width + 14
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -17,7 +18,7 @@ Item {
         property bool ready: false
         property bool low: false
         property bool critical: false
-        property color accent: "#B58FFF"
+        property color accent: "#89b4fa"
         property string timeText: ""
         property string rateText: ""
         function refreshState() {
@@ -33,7 +34,7 @@ Item {
                 root.pluggedIn = dev.state === UPowerDeviceState.FullyCharged || dev.state === UPowerDeviceState.PendingCharge
                 root.low = !root.charging && !root.pluggedIn && root.percent <= 20 && root.percent > 10
                 root.critical = !root.charging && !root.pluggedIn && root.percent <= 10
-                root.accent = root.critical ? "#FF0000" : (root.low ? "#FF6B6B" : "#B58FFF")
+                root.accent = root.critical ? "#FF0000" : (root.low ? "#FF6B6B" : "#89b4fa")
                 if (root.pluggedIn) {
                         root.timeText = Translation.tr("battery.connected")
                 } else if (dev.timeToFull > 0) {
@@ -69,9 +70,9 @@ Item {
                 width: 36
                 height: 18
                 radius: 20
-                color: "#110d1a"
+                color: "#181825"
                 border {
-                        color: "#4c3a70"
+                        color: "#45475a"
                         width: 0.5
                 }
                 anchors {
@@ -94,7 +95,7 @@ Item {
                         width: parent.width * Math.max(0, Math.min(1, root.percent / 100))
                         height: parent.height
                         radius: 20
-                        color: "#B58FFF"
+                        color: "#89b4fa"
                         opacity: 1.0
                         clip: true
                         Behavior on width {
@@ -108,7 +109,7 @@ Item {
                         id: centerText
                         anchors.centerIn: parent
                         text: root.ready ? root.percent + "%" : "?"
-                        color: "#E8DBFF"
+                        color: "#cdd6f4"
                         font {
                                 family: "Monocraft"
                                 pixelSize: 10
@@ -131,7 +132,7 @@ Item {
                         id: chargeIcon
                         anchors.centerIn: parent
                         text: "󱐋"
-                        color: "#E8DBFF"
+                        color: "#cdd6f4"
                         font {
                                 family: "Monocraft"
                                 pixelSize: 13
@@ -150,7 +151,7 @@ Item {
                                 }
                         }
                 }
-                MouseArea {
+                MD3.Pressable {
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
@@ -187,12 +188,12 @@ Item {
                 implicitHeight: popupContent.implicitHeight + 24
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -225,7 +226,7 @@ Item {
                                         height: 24
                                         Text {
                                                 text: Translation.tr("battery.popup.title")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 14
@@ -242,7 +243,7 @@ Item {
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: closeHoverFill
@@ -250,7 +251,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width {
                                                                 NumberAnimation {
@@ -268,13 +269,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -298,9 +299,9 @@ Item {
                                                 Layout.fillWidth: true
                                                 height: 18
                                                 radius: 20
-                                                color: "#110d1a"
+                                                color: "#181825"
                                                 border {
-                                                        color: "#4c3a70"
+                                                        color: "#45475a"
                                                         width: 0.5
                                                 }
                                                 Rectangle {
@@ -308,7 +309,7 @@ Item {
                                                         width: parent.width * Math.max(0, Math.min(1, root.percent / 100))
                                                         height: parent.height
                                                         radius: 20
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         Behavior on width {
                                                                 NumberAnimation {
                                                                         duration: 120
@@ -319,7 +320,7 @@ Item {
                                         }
                                         Text {
                                                 text: root.ready ? root.percent + "%" : Translation.tr("battery.na")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 11
@@ -332,7 +333,7 @@ Item {
                                         Text {
                                                 width: parent.width
                                                 text: root.timeText
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 12
@@ -341,7 +342,7 @@ Item {
                                         Text {
                                                 width: parent.width
                                                 text: Translation.trf("battery.power", root.rateText)
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 visible: root.rateText !== ""
                                                 font {
                                                         family: "Monocraft"

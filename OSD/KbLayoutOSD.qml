@@ -13,7 +13,7 @@ OSDWindow {
     iconText: "󰌌"
     labelText: currentLayout || Translation.tr("osd.kblayout")
     value: 1
-    accentColor: "#B58FFF"
+    accentColor: "#89b4fa"
     showProgress: false
     property var shortNames: ({
         "English (US)": "US",

@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import "../Components" as MD3
 import Quickshell.Widgets
 Item {
         id: launcher
@@ -38,7 +39,7 @@ Item {
                         }
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 id: launcherMouseArea
                 anchors.fill: parent
                 hoverEnabled: true

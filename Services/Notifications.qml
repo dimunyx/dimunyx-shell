@@ -2,12 +2,13 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Notifications
 import QtQuick
+import "../Components" as MD3
 import QtQuick.Controls
 import QtQuick.Layouts
 Item {
         id: root
         implicitWidth: bellWrapper.width + (unreadCount > 0 ? dotIndicator.width + 0 : 0) + 0
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -122,7 +123,7 @@ Item {
                 Text {
                         id: bellIcon
                         text: root.doNotDisturb ? "\uf056" : "\uf0f3"
-                        color: "#B58FFF"
+                        color: "#89b4fa"
                         scale: 1
                         anchors.centerIn: parent
                         font {
@@ -142,7 +143,7 @@ Item {
                                 onTriggered: bellIcon.scale = 1
                         }
                 }
-                MouseArea {
+                MD3.Pressable {
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
@@ -172,7 +173,7 @@ Item {
                 width: 6
                 height: 6
                 radius: 3
-                color: "#FF6F9B"
+                color: "#f38ba8"
         }
         PopupWindow {
                 id: popup
@@ -188,12 +189,12 @@ Item {
                 }
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -214,7 +215,7 @@ Item {
                                         spacing: 6
                                         Text {
                                                  text: Translation.tr("notifications.popup.title")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 14
@@ -229,7 +230,7 @@ Item {
                                                 radius: 6
                                                 color: "transparent"
                                                 border {
-                                                        color: "#4c3a70"
+                                                        color: "#45475a"
                                                         width: 1
                                                 }
                                                 clip: true
@@ -239,7 +240,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
                                                         Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
@@ -247,13 +248,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: root.doNotDisturb ? "\uf056" : "\uf0f3"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: dndArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -282,7 +283,7 @@ Item {
                                                 radius: 6
                                                 color: "transparent"
                                                 border {
-                                                        color: "#4c3a70"
+                                                        color: "#45475a"
                                                         width: 1
                                                 }
                                                 clip: true
@@ -292,7 +293,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
                                                         Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
@@ -301,13 +302,13 @@ Item {
                                                         id: clearLabel
                                                         anchors.centerIn: parent
                                                         text: Translation.tr("notifications.clear")
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 11
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: clearArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -330,7 +331,7 @@ Item {
                                                 radius: 6
                                                 color: "transparent"
                                                 border {
-                                                        color: "#4c3a70"
+                                                        color: "#45475a"
                                                         width: 1
                                                 }
                                                 clip: true
@@ -340,7 +341,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
                                                         Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.OutQuad } }
@@ -348,13 +349,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -374,7 +375,7 @@ Item {
                                 Rectangle {
                                         Layout.fillWidth: true
                                         Layout.preferredHeight: 1
-                                        color: "#4c3a70"
+                                        color: "#45475a"
                                 }
                                 Flickable {
                                         id: popupFlickable
@@ -391,16 +392,16 @@ Item {
                                                 contentItem: Rectangle {
                                                         implicitWidth: 10
                                                         radius: 5
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         border {
-                                                                color: "#8B6FD4"
+                                                                color: "#89b4fa"
                                                                 width: 1
                                                         }
                                                 }
                                                 background: Rectangle {
                                                         implicitWidth: 10
                                                         radius: 5
-                                                        color: "#1a1225"
+                                                        color: "#313244"
                                                 }
                                         }
                                         Column {
@@ -414,9 +415,9 @@ Item {
                                                                 id: card
                                                                 width: popupContent.width
                                                                 radius: 12
-                                                                color: modelData.urgency === 2 ? "#2a0f1a" : "#110d1a"
+                                                                color: modelData.urgency === 2 ? "#2a0f1a" : "#181825"
                                                                 border {
-                                                                        color: "#4c3a70"
+                                                                        color: "#45475a"
                                                                         width: 1
                                                                 }
                                                                 property bool closing: false
@@ -441,21 +442,21 @@ Item {
                                                                                 right: parent.right
                                                                                 rightMargin: 6
                                                                         }
-                                                                        color: notifDismissArea.containsMouse ? "#ff6b6b" : "transparent"
+                                                                        color: notifDismissArea.containsMouse ? "#f38ba8" : "transparent"
                                                                         border {
-                                                                                color: "#4c3a70"
+                                                                                color: "#45475a"
                                                                                 width: 0.5
                                                                         }
                                                                         Text {
                                                                                 anchors.centerIn: parent
                                                                                 text: "\uf00d"
-                                                                                color: "#B58FFF"
+                                                                                color: "#89b4fa"
                                                                                 font {
                                                                                         family: "Monocraft"
                                                                                         pixelSize: 10
                                                                                 }
                                                                         }
-                                                                        MouseArea {
+                                                                        MD3.Pressable {
                                                                                 id: notifDismissArea
                                                                                 anchors.fill: parent
                                                                                 hoverEnabled: true
@@ -465,7 +466,7 @@ Item {
                                                                                 }
                                                                         }
                                                                 }
-                                                                MouseArea {
+                                                                MD3.Pressable {
                                                                         anchors.fill: parent
                                                                         hoverEnabled: true
                                                                         cursorShape: Qt.PointingHandCursor
@@ -493,7 +494,7 @@ Item {
                                                                                 Text {
                                                                                         width: parent.width
                                                                                          text: modelData.appName || "Application"
-                                                                                        color: "#B58FFF"
+                                                                                        color: "#89b4fa"
                                                                                         font {
                                                                                                 family: "Monocraft"
                                                                                                 pixelSize: 10
@@ -502,7 +503,7 @@ Item {
                                                                                 Text {
                                                                                         width: parent.width
                                                                                         text: modelData.summary || ""
-                                                                                        color: "#E8DBFF"
+                                                                                        color: "#cdd6f4"
                                                                                         font {
                                                                                                 family: "Monocraft"
                                                                                                 pixelSize: 12
@@ -513,7 +514,7 @@ Item {
                                                                                 Text {
                                                                                         width: parent.width
                                                                                         text: modelData.body || ""
-                                                                                        color: "#E8DBFF"
+                                                                                        color: "#cdd6f4"
                                                                                         visible: modelData.body && modelData.body.length > 0
                                                                                         font {
                                                                                                 family: "Monocraft"
@@ -529,16 +530,16 @@ Item {
                                                         width: parent.width
                                                         height: 60
                                                         radius: 12
-                                                        color: "#110d1a"
+                                                        color: "#181825"
                                                         border {
-                                                                color: "#4c3a70"
+                                                                color: "#45475a"
                                                                 width: 1
                                                         }
                                                         visible: notifList.count === 0
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                  text: root.doNotDisturb ? Translation.tr("notifications.dnd") : Translation.tr("notifications.empty")
-                                                                color: "#6b5a8f"
+                                                                color: "#585b70"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 12
@@ -614,13 +615,13 @@ Item {
                                                         anchors.top: parent.top
                                                         width: parent.width
                                                         radius: 14
-                                                        color: notif.urgency === 2 ? "#2a0f1a" : "#110d1a"
+                                                        color: notif.urgency === 2 ? "#2a0f1a" : "#181825"
                                                         border {
-                                                                color: "#4c3a70"
+                                                                color: "#45475a"
                                                                 width: 1
                                                         }
                                                         height: toastContent.height + 16
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
                                                                 cursorShape: Qt.PointingHandCursor
@@ -642,21 +643,21 @@ Item {
                                                                         right: parent.right
                                                                         rightMargin: 6
                                                                 }
-                                                                color: toastDismissArea.containsMouse ? "#ff6b6b" : "transparent"
+                                                                color: toastDismissArea.containsMouse ? "#f38ba8" : "transparent"
                                                                 border {
-                                                                        color: "#4c3a70"
+                                                                        color: "#45475a"
                                                                         width: 0.5
                                                                 }
                                                                 Text {
                                                                         anchors.centerIn: parent
                                                                         text: "\uf00d"
-                                                                        color: "#B58FFF"
+                                                                        color: "#89b4fa"
                                                                         font {
                                                                                 family: "Monocraft"
                                                                                 pixelSize: 14
                                                                         }
                                                                 }
-                                                                MouseArea {
+                                                                MD3.Pressable {
                                                                         id: toastDismissArea
                                                                         anchors.fill: parent
                                                                         hoverEnabled: true
@@ -684,7 +685,7 @@ Item {
                                                                         Text {
                                                                                 width: parent.width
                                                                                  text: notif.appName || "Application"
-                                                                                color: "#B58FFF"
+                                                                                color: "#89b4fa"
                                                                                 font {
                                                                                         family: "Monocraft"
                                                                                         pixelSize: 14
@@ -693,7 +694,7 @@ Item {
                                                                         Text {
                                                                                 width: parent.width
                                                                                 text: notif.summary || ""
-                                                                                color: "#E8DBFF"
+                                                                                color: "#cdd6f4"
                                                                                 font {
                                                                                         family: "Monocraft"
                                                                                         pixelSize: 14
@@ -704,7 +705,7 @@ Item {
                                                                         Text {
                                                                                 width: parent.width
                                                                                 text: notif.body || ""
-                                                                                color: "#E8DBFF"
+                                                                                color: "#cdd6f4"
                                                                                 visible: notif.body && notif.body.length > 0
                                                                                 font {
                                                                                         family: "Monocraft"

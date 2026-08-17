@@ -1,4 +1,5 @@
 import QtQuick
+import "../Components" as MD3
 import Quickshell
 import Quickshell.Io
 import QtQuick.Layouts
@@ -7,7 +8,7 @@ import "../Services"
 Item {
         id: root
         implicitWidth: tempRow.implicitWidth
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -21,7 +22,7 @@ Item {
         property bool pctVisible: false
         Timer {
                 id: animTimer
-                interval: 16
+                interval: 12
                 repeat: true
                 running: true
                 onTriggered: {
@@ -91,7 +92,7 @@ Item {
                 Text {
                         id: tempIcon
                         text: root.tempValue >= 90 ? "\uf2c7" : root.tempValue >= 75 ? "\uf2c8" : root.tempValue >= 60 ? "\uf2c9" : root.tempValue >= 40 ? "\uf2ca" : "\uf2cb"
-                        color: "#B58FFF"
+                        color: "#89b4fa"
                         scale: 1
                         font {
                                 family: "Monocraft"
@@ -127,7 +128,7 @@ Item {
                                 id: tempPct
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: Math.round(root.tempValue) + "°"
-                                color: "#E8DBFF"
+                                color: "#cdd6f4"
                                 opacity: root.pctVisible ? 1 : 0
                                 font {
                                         family: "Monocraft"
@@ -142,7 +143,7 @@ Item {
                         }
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 id: rootMouseArea
                 anchors.fill: parent
                 hoverEnabled: true
@@ -180,12 +181,12 @@ Item {
                 implicitHeight: 140
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -202,7 +203,7 @@ Item {
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -232,7 +233,7 @@ Item {
                                                         verticalCenter: parent.verticalCenter
                                                 }
                                                  text: Translation.tr("monitor.temp.popup.title")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 14
@@ -249,7 +250,7 @@ Item {
                                                         verticalCenter: parent.verticalCenter
                                                 }
                                                 text: Math.round(root.tempValue) + "°C"
-                                                color: "#B58FFF"
+                                                color: "#89b4fa"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 12
@@ -265,7 +266,7 @@ Item {
                                                 height: 24
                                                 radius: 6
                                                 color: "transparent"
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                                 clip: true
                                                 Rectangle {
                                                         id: closeHoverFill
@@ -273,7 +274,7 @@ Item {
                                                         width: 0
                                                         height: 0
                                                         radius: 6
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         opacity: 0.2
                                                         Behavior on width {
                                                                 NumberAnimation {
@@ -291,13 +292,13 @@ Item {
                                                 Text {
                                                         anchors.centerIn: parent
                                                         text: "\uf00d"
-                                                        color: "#B58FFF"
+                                                        color: "#89b4fa"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: closeArea
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -338,7 +339,7 @@ Item {
                                                         ctx.save()
                                                         ctx.font = "11px Monocraft"
                                                         ctx.textAlign = "left"
-                                                        ctx.fillStyle = "#E8DBFF"
+                                                        ctx.fillStyle = "#cdd6f4"
                                                         var labels = ["100°", "75°", "50°", "25°", "0°"]
                                                         var lw = 32
                                                         for (var k = 0; k < 5; k++) {
@@ -376,7 +377,7 @@ Item {
                                                                 ctx.quadraticCurveTo(lw + (j - s) * pw, py(val(j)), xc, yc)
                                                         }
                                                         ctx.lineTo(lw + (pts - 1 - s) * pw, py(val(pts - 1)))
-                                                        ctx.strokeStyle = "#B58FFF"
+                                                        ctx.strokeStyle = "#89b4fa"
                                                         ctx.lineWidth = 3
                                                         ctx.stroke()
                                                         ctx.restore()

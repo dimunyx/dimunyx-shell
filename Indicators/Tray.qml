@@ -1,4 +1,5 @@
 import QtQuick
+import "../Components" as MD3
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Services.SystemTray
@@ -54,7 +55,7 @@ Item {
                                                 item: trayIcon
                                         }
                                 }
-                                MouseArea {
+                                MD3.Pressable {
                                         anchors.fill: parent
                                         hoverEnabled: true
                                         cursorShape: Qt.PointingHandCursor
@@ -102,12 +103,12 @@ Item {
                                         import QtQuick.Controls
                                         MenuItem {
                                                 background: Rectangle {
-                                                        color: parent.highlighted ? "#1a1225" : "transparent"
+                                                        color: parent.highlighted ? "#313244" : "transparent"
                                                         radius: 4
                                                 }
                                                 contentItem: Text {
                                                         text: parent.text
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font.family: "Monocraft"
                                                         font.pixelSize: 12
                                                         leftPadding: 12
@@ -118,9 +119,9 @@ Item {
                                 menu.background = Qt.createQmlObject('
                                         import QtQuick
                                         Rectangle {
-                                                color: "#000000"
+                                                color: "#1e1e2e"
                                                 radius: 10
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                         }
                                 ', menu)
                         }
@@ -138,12 +139,12 @@ Item {
                                         import QtQuick.Controls
                                         MenuItem {
                                                 background: Rectangle {
-                                                        color: parent.highlighted ? "#1a1225" : "transparent"
+                                                        color: parent.highlighted ? "#313244" : "transparent"
                                                         radius: 4
                                                 }
                                                 contentItem: Text {
                                                         text: parent.text
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font.family: "Monocraft"
                                                         font.pixelSize: 12
                                                         leftPadding: 12
@@ -154,9 +155,9 @@ Item {
                                 menu.background = Qt.createQmlObject('
                                         import QtQuick
                                         Rectangle {
-                                                color: "#000000"
+                                                color: "#1e1e2e"
                                                 radius: 10
-                                                border { color: "#4c3a70"; width: 1 }
+                                                border { color: "#45475a"; width: 1 }
                                         }
                                 ', menu)
                         }

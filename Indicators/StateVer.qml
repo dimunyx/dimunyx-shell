@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import "../Components" as MD3
 import QtQuick.Layouts
 Item {
         id: stateVer
@@ -57,7 +58,7 @@ Item {
                 }
                 Text {
                         text: stateVer.nixProfile
-                        color: "#E8DBFF"
+                        color: "#cdd6f4"
                         font {
                                 family: "Monocraft"
                                 pixelSize: 14
@@ -66,7 +67,7 @@ Item {
                         visible: text !== ""
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 id: stateVerMouseArea
                 anchors.fill: parent
                 hoverEnabled: true

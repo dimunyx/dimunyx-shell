@@ -1,4 +1,5 @@
 import QtQuick
+import "../Components" as MD3
 import Quickshell
 import Quickshell.Io
 import Quickshell.Networking
@@ -6,7 +7,7 @@ import QtQuick.Layouts
 Item {
         id: root
         implicitWidth: wifiRow.implicitWidth
-        implicitHeight: 28
+        implicitHeight: 32
         property var rootWindow: null
         property bool popupOpen: false
         property bool popupReady: false
@@ -125,7 +126,7 @@ Item {
                 Text {
                         id: wifiIcon
                         text: root.networkName === "" ? "󰤭" : root.signalStrength >= 75 ? "󰤨" : root.signalStrength >= 50 ? "󰤥" : root.signalStrength >= 25 ? "󰤢" : "󰤟"
-                        color: "#B58FFF"
+                        color: "#89b4fa"
                         scale: 1
                         font {
                                 family: "Monocraft"
@@ -161,7 +162,7 @@ Item {
                                 id: wifiPct
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: root.networkName
-                                color: "#E8DBFF"
+                                color: "#cdd6f4"
                                 opacity: root.pctVisible ? 1 : 0
                                 font {
                                         family: "Monocraft"
@@ -176,7 +177,7 @@ Item {
                         }
                 }
         }
-        MouseArea {
+        MD3.Pressable {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
@@ -220,12 +221,12 @@ Item {
                 implicitHeight: popupContent.implicitHeight + 24
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.popupOpen ? 1 : 0
                         scale: root.popupOpen ? 1 : 0.95
@@ -242,7 +243,7 @@ Item {
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -271,7 +272,7 @@ Item {
                                                 spacing: 8
                                                 Text {
                                                         text: Translation.tr("wifi.popup.title")
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 14
@@ -306,7 +307,7 @@ Item {
                                                                 var end = start + Math.PI / 2
                                                                 ctx.beginPath()
                                                                 ctx.arc(cx, cy, r, start, end)
-                                                                ctx.strokeStyle = "#B58FFF"
+                                                                ctx.strokeStyle = "#89b4fa"
                                                                 ctx.lineWidth = 2.5
                                                                 ctx.lineCap = "round"
                                                                 ctx.stroke()
@@ -318,7 +319,7 @@ Item {
                                                         height: 24
                                                         radius: 6
                                                         color: "transparent"
-                                                        border { color: "#4c3a70"; width: 1 }
+                                                        border { color: "#45475a"; width: 1 }
                                                         clip: true
                                                         visible: !root.connecting && !root.scanning
                                                         Rectangle {
@@ -327,7 +328,7 @@ Item {
                                                                 width: 0
                                                                 height: 0
                                                                 radius: 6
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 opacity: 0.2
                                                                 Behavior on width {
                                                                         NumberAnimation {
@@ -345,13 +346,13 @@ Item {
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: "\uf021"
-                                                                color: refreshArea.containsMouse ? "#B58FFF" : "#4c3a70"
+                                                                color: refreshArea.containsMouse ? "#89b4fa" : "#45475a"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 14
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: refreshArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -378,7 +379,7 @@ Item {
                                                         height: 24
                                                         radius: 6
                                                         color: "transparent"
-                                                        border { color: "#4c3a70"; width: 1 }
+                                                        border { color: "#45475a"; width: 1 }
                                                         clip: true
                                                         visible: root.scanning && !root.connecting
                                                         Rectangle {
@@ -387,7 +388,7 @@ Item {
                                                                 width: 0
                                                                 height: 0
                                                                 radius: 6
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 opacity: 0.2
                                                                 Behavior on width {
                                                                         NumberAnimation {
@@ -405,13 +406,13 @@ Item {
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: root.scanning ? "\uf00d" : "\uf021"
-                                                                color: scanArea.containsMouse ? "#B58FFF" : "#4c3a70"
+                                                                color: scanArea.containsMouse ? "#89b4fa" : "#45475a"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 14
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: scanArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -438,7 +439,7 @@ Item {
                                                         height: 24
                                                         radius: 6
                                                         color: "transparent"
-                                                        border { color: "#4c3a70"; width: 1 }
+                                                        border { color: "#45475a"; width: 1 }
                                                         clip: true
                                                         Rectangle {
                                                                 id: closeHoverFill
@@ -446,7 +447,7 @@ Item {
                                                                 width: 0
                                                                 height: 0
                                                                 radius: 6
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 opacity: 0.2
                                                                 Behavior on width {
                                                                         NumberAnimation {
@@ -464,13 +465,13 @@ Item {
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: "\uf00d"
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 14
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: closeArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -493,7 +494,7 @@ Item {
                                         spacing: 8
                                                 Text {
                                                         text: Networking.wifiEnabled ? Translation.tr("wifi.enabled") : Translation.tr("wifi.disabled")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 12
@@ -507,9 +508,9 @@ Item {
                                                 width: 40
                                                 height: 22
                                                 radius: 11
-                                                color: Networking.wifiEnabled ? "#B58FFF" : "#1a1225"
+                                                color: Networking.wifiEnabled ? "#89b4fa" : "#313244"
                                                 border {
-                                                        color: "#4c3a70"
+                                                        color: "#45475a"
                                                         width: 1
                                                 }
                                                 Behavior on color {
@@ -523,7 +524,7 @@ Item {
                                                         width: 16
                                                         height: 16
                                                         radius: 8
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         anchors {
                                                                 verticalCenter: parent.verticalCenter
                                                         }
@@ -535,7 +536,7 @@ Item {
                                                                 }
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         anchors.fill: parent
                                                         cursorShape: Qt.PointingHandCursor
                                                         onClicked: {
@@ -547,7 +548,7 @@ Item {
                                 Text {
                                         width: parent.width
                                          text: root.connectedNetwork ? Translation.trf("wifi.connected", root.networkName) : (root.connecting ? Translation.tr("wifi.connecting") : Translation.tr("wifi.no.connections"))
-                                        color: root.connectedNetwork ? "#B58FFF" : (root.connecting ? "#E8DBFF" : "#4c3a70")
+                                        color: root.connectedNetwork ? "#89b4fa" : (root.connecting ? "#cdd6f4" : "#45475a")
                                         font {
                                                 family: "Monocraft"
                                                 pixelSize: 12
@@ -556,7 +557,7 @@ Item {
                                 Rectangle {
                                         width: parent.width
                                         height: 1
-                                        color: "#4c3a70"
+                                        color: "#45475a"
                                 }
                                 RowLayout {
                                         width: parent.width
@@ -564,7 +565,7 @@ Item {
                                         spacing: 6
                                         Text {
                                                  text: root.scanning ? Translation.tr("wifi.scanning") : Translation.tr("wifi.find.network")
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 12
@@ -598,7 +599,7 @@ Item {
                                                         var end = start + Math.PI / 2
                                                         ctx.beginPath()
                                                         ctx.arc(cx, cy, r, start, end)
-                                                        ctx.strokeStyle = "#B58FFF"
+                                                        ctx.strokeStyle = "#89b4fa"
                                                         ctx.lineWidth = 2.5
                                                         ctx.lineCap = "round"
                                                         ctx.stroke()
@@ -611,7 +612,7 @@ Item {
                                         spacing: 6
                                         Text {
                                                  text: root.selectedNetwork ? Translation.trf("wifi.password.for", root.selectedNetwork.name) : ""
-                                                color: "#E8DBFF"
+                                                color: "#cdd6f4"
                                                 font {
                                                         family: "Monocraft"
                                                         pixelSize: 12
@@ -621,16 +622,16 @@ Item {
                                                 width: parent.width
                                                 height: 28
                                                 radius: 6
-                                                color: "#110d1a"
+                                                color: "#181825"
                                                 border {
-                                                        color: pwInput.activeFocus ? "#B58FFF" : "#4c3a70"
+                                                        color: pwInput.activeFocus ? "#89b4fa" : "#45475a"
                                                         width: 1
                                                 }
                                                 TextInput {
                                                         id: pwInput
                                                         anchors.fill: parent
                                                         anchors.margins: 6
-                                                        color: "#E8DBFF"
+                                                        color: "#cdd6f4"
                                                         echoMode: TextInput.Password
                                                         font {
                                                                 family: "Monocraft"
@@ -638,7 +639,7 @@ Item {
                                                         }
                                                         clip: true
                                                         selectByMouse: true
-                                                        selectionColor: "#B58FFF"
+                                                        selectionColor: "#89b4fa"
                                                         Keys.onReturnPressed: connectArea.clicked(Qt.LeftButton)
                                                         KeyNavigation.tab: connectBtn
                                                 }
@@ -651,22 +652,22 @@ Item {
                                                         width: cancelLabel.implicitWidth + 12
                                                         height: 22
                                                         radius: 6
-                                                        color: cancelArea.containsMouse ? "#1a1225" : "#110d1a"
+                                                        color: cancelArea.containsMouse ? "#313244" : "#181825"
                                                         border {
-                                                                color: "#4c3a70"
+                                                                color: "#45475a"
                                                                 width: 1
                                                         }
                                                                 Text {
                                                                         id: cancelLabel
                                                                         anchors.centerIn: parent
                                                                          text: Translation.tr("wifi.cancel")
-                                                                        color: "#E8DBFF"
+                                                                        color: "#cdd6f4"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 11
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: cancelArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -682,9 +683,9 @@ Item {
                                                         width: connectLabel.implicitWidth + 12
                                                         height: 22
                                                         radius: 6
-                                                        color: connectArea.containsMouse ? "#1a1225" : "#110d1a"
+                                                        color: connectArea.containsMouse ? "#313244" : "#181825"
                                                         border {
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 width: 1
                                                         }
                                                         signal clicked()
@@ -692,13 +693,13 @@ Item {
                                                                         id: connectLabel
                                                                         anchors.centerIn: parent
                                                                          text: Translation.tr("wifi.btn.connect")
-                                                                        color: "#B58FFF"
+                                                                        color: "#89b4fa"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 11
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: connectArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -724,9 +725,9 @@ Item {
                                                 width: popupContent.width
                                                 height: 32
                                                 radius: 8
-                                                color: netMouse.containsMouse ? "#1a1225" : "#110d1a"
+                                                color: netMouse.containsMouse ? "#313244" : "#181825"
                                                 border {
-                                                        color: modelData.connected ? "#B58FFF" : "#4c3a70"
+                                                        color: modelData.connected ? "#89b4fa" : "#45475a"
                                                         width: modelData.connected ? 2 : 1
                                                 }
                                                 RowLayout {
@@ -738,7 +739,7 @@ Item {
                                                         spacing: 6
                                                         Text {
                                                                 text: signalIcon(Math.round(modelData.signalStrength * 100))
-                                                                color: modelData.connected ? "#B58FFF" : "#4c3a70"
+                                                                color: modelData.connected ? "#89b4fa" : "#45475a"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 16
@@ -746,7 +747,7 @@ Item {
                                                         }
                                                         Text {
                                                                 text: modelData.name
-                                                                color: "#E8DBFF"
+                                                                color: "#cdd6f4"
                                                                 elide: Text.ElideRight
                                                                 Layout.fillWidth: true
                                                                 font {
@@ -756,7 +757,7 @@ Item {
                                                         }
                                                         Text {
                                                                 text: securityText(modelData.security)
-                                                                color: "#4c3a70"
+                                                                color: "#45475a"
                                                                 visible: modelData.security !== 0
                                                                 font {
                                                                         family: "Monocraft"
@@ -765,14 +766,14 @@ Item {
                                                         }
                                                         Text {
                                                                  text: modelData.connected ? Translation.tr("wifi.disconnect") : Translation.tr("wifi.connect")
-                                                                color: modelData.connected ? "#ff6b6b" : "#B58FFF"
+                                                                color: modelData.connected ? "#f38ba8" : "#89b4fa"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 11
                                                                 }
                                                         }
                                                 }
-                                                MouseArea {
+                                                MD3.Pressable {
                                                         id: netMouse
                                                         anchors.fill: parent
                                                         hoverEnabled: true
@@ -817,12 +818,12 @@ Item {
                 implicitHeight: 160
                 Rectangle {
                         anchors.fill: parent
-                        color: "#000000"
+                        color: "#1e1e2e"
                         radius: 20
                         clip: true
                         border {
-                                color: "#B58FFF"
-                                width: 4
+                                color: "#89b4fa"
+                                width: 1
                         }
                         opacity: root.contextMenuOpen ? 1 : 0
                         scale: root.contextMenuOpen ? 1 : 0.95
@@ -839,7 +840,7 @@ Item {
                                         easing.type: Easing.OutQuad
                                 }
                         }
-                        MouseArea {
+                        MD3.Pressable {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 propagateComposedEvents: true
@@ -861,7 +862,7 @@ Item {
                                                 spacing: 8
                                                         Text {
                                                                  text: root.contextNetwork ? root.contextNetwork.name : Translation.tr("wifi.popup.title")
-                                                                color: "#E8DBFF"
+                                                                color: "#cdd6f4"
                                                         font {
                                                                 family: "Monocraft"
                                                                 pixelSize: 13
@@ -877,7 +878,7 @@ Item {
                                                         height: 24
                                                         radius: 6
                                                         color: "transparent"
-                                                        border { color: "#4c3a70"; width: 1 }
+                                                        border { color: "#45475a"; width: 1 }
                                                         clip: true
                                                         Rectangle {
                                                                 id: contextCloseHoverFill
@@ -885,7 +886,7 @@ Item {
                                                                 width: 0
                                                                 height: 0
                                                                 radius: 6
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 opacity: 0.2
                                                                 Behavior on width {
                                                                         NumberAnimation {
@@ -903,13 +904,13 @@ Item {
                                                         Text {
                                                                 anchors.centerIn: parent
                                                                 text: "\uf00d"
-                                                                color: "#B58FFF"
+                                                                color: "#89b4fa"
                                                                 font {
                                                                         family: "Monocraft"
                                                                         pixelSize: 14
                                                                 }
                                                         }
-                                                        MouseArea {
+                                                        MD3.Pressable {
                                                                 id: contextCloseArea
                                                                 anchors.fill: parent
                                                                 hoverEnabled: true
@@ -930,7 +931,7 @@ Item {
                                 Rectangle {
                                         width: parent.width
                                         height: 1
-                                        color: "#3a3255"
+                                        color: "#45475a"
                                 }
                                 Item {
                                         width: parent.width
@@ -942,7 +943,7 @@ Item {
                                                 width: parent.width - 4
                                                 height: 28
                                                 radius: 4
-                                                color: "#1a1225"
+                                                color: "#313244"
                                                 opacity: 0
                                                 y: root.contextHoveredIndex * 30
                                                 Behavior on y {
@@ -980,13 +981,13 @@ Item {
                                                                                 verticalCenter: parent.verticalCenter
                                                                         }
                                                                         text: modelData.text
-                                                                        color: "#E8DBFF"
+                                                                        color: "#cdd6f4"
                                                                         font {
                                                                                 family: "Monocraft"
                                                                                 pixelSize: 12
                                                                         }
                                                                 }
-                                                                MouseArea {
+                                                                MD3.Pressable {
                                                                         anchors.fill: parent
                                                                         hoverEnabled: true
                                                                         cursorShape: modelData.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor

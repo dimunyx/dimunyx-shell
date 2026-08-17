@@ -9,7 +9,7 @@ OSDWindow {
     iconText: "\uf0ea"
     labelText: Translation.tr("osd.clipboard.cleared")
     value: 1
-    accentColor: "#B58FFF"
+    accentColor: "#89b4fa"
     showProgress: false
     Process {
         id: pollProc
