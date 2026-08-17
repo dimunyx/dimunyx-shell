@@ -1,0 +1,8 @@
+singleton Translation 1.0 Translation.qml
+AppLauncher 1.0 AppLauncher.qml
+Bluetooth 1.0 Bluetooth.qml
+Cava 1.0 Cava.qml
+Lockscreen 1.0 Lockscreen.qml
+Notifications 1.0 Notifications.qml
+Volume 1.0 Volume.qml
+Wifi 1.0 Wifi.qml

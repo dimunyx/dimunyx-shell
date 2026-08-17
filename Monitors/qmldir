@@ -1,0 +1,4 @@
+Cpu 1.0 Cpu.qml
+Disk 1.0 Disk.qml
+Mem 1.0 Mem.qml
+Temp 1.0 Temp.qml

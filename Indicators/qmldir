@@ -1,0 +1,13 @@
+Battery 1.0 Battery.qml
+Brightness 1.0 Brightness.qml
+CapsNumLock 1.0 CapsNumLock.qml
+Clock 1.0 Clock.qml
+KbLayout 1.0 KbLayout.qml
+Launcher 1.0 Launcher.qml
+NiriVer 1.0 NiriVer.qml
+PowerProfileDaemon 1.0 PowerProfileDaemon.qml
+SessionMenu SessionMenu.qml
+StateVer 1.0 StateVer.qml
+Tray 1.0 Tray.qml
+Wallpaper 1.0 Wallpaper.qml
+Workspaces 1.0 Workspaces.qml
